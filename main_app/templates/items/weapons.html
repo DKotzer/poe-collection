@@ -1,0 +1,35 @@
+{% extends "base.html"%} {% block content %}
+<h1>Weapon List</h1>
+<div class="list">
+  {% for weapon in weapon_list %}
+  <div class="card">
+    <div class="card-content scarab-card">
+      <div class="card-title center">{{weapon.name}}</div>
+      <div class="image-holder">
+        <img class="img" src="{{weapon.icon}}" />
+      </div>
+
+      <p><span class="bold">Value:</span> {{weapon.chaosValue}} chaos orbs</p>
+      {% if weapon.implicitModifiers.0.text %}
+      <p>
+        <span class="bold">Implicit:</span> {{weapon.implicitModifiers.0.text}}
+      </p>
+      {% endif %}
+      <p>
+        <span class="bold">Explicits:</span>
+        <br />{{weapon.explicitModifiers.0.text}}<br />
+        {% if weapon.explicitModifiers.1.text %}
+        {{weapon.explicitModifiers.1.text}} <br />
+        {{weapon.explicitModifiers.2.text}}<br />
+        {{weapon.explicitModifiers.3.text}}<br />
+        {{weapon.explicitModifiers.4.text}} {% endif %}
+      </p>
+      {% if weapon.flavourText %}
+      <p><span class="bold">Details:</span> {{weapon.flavourText}}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock %}

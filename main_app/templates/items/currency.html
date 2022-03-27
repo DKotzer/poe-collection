@@ -1,0 +1,15 @@
+{% extends "base.html"%} {% block content %}
+<h1>Currency List</h1>
+
+<div class="list">
+  {% for currency in currency_list %}
+  <div class="card currency">
+    <div class="card-content">
+      <span class="card-title currency-title"> {{currency.name}} </span>
+      <div class="center">
+        <img class="img" src="{{currency.icon}}" />
+      </div>
+    </div>
+  </div>
+  {% endfor %} {% endblock %}
+</div>

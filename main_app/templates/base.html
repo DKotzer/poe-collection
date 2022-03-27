@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+  </head>
+  <body>
+    <header class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <ul>
+            <li>
+              <a href="/" class="left brand-logo">Library</a>
+            </li>
+          </ul>
+          <div class="brand-logo center">
+            <ul>
+              <li>
+                <a href="/about">About</a>
+              </li>
+              <li>
+                <a href="/items">Books</a>
+              </li>
+              <li>
+                <a href="/currency">Currency</a>
+              </li>
+              <li>
+                <a href="/scarabs">Scarabs</a>
+              </li>
+              <li>
+                <a href="/weapons">Weapons</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="below-nav">
+      <main class="container">{% block content %} {% endblock %}</main>
+    </div>
+    <footer class="page-footer">
+      <div class="center">All Rights reserved &copy; 2022 Library</div>
+    </footer>
+  </body>
+</html>

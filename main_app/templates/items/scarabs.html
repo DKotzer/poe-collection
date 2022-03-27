@@ -1,0 +1,23 @@
+{% extends "base.html"%} {% block content %}
+<h1>Scarab List</h1>
+<div class="list">
+  {% for scarab in scarab_list %}
+  <div class="card">
+    <div class="card-content scarab-card">
+      <span class="card-title">
+        {{scarab.name}}
+        <img class="img" src="{{scarab.icon}}" />
+      </span>
+      <p>
+        <span class="bold">Effect:</span> {{scarab.explicitModifiers.0.text}}
+      </p>
+      {% if scarab.flavourText %}
+      <p><span class="bold">Details:</span> {{scarab.flavourText}}</p>
+      {% endif %}
+      <p><span class="bold">Value:</span> {{scarab.chaosValue}} chaos orbs</p>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock %}
