@@ -98,6 +98,10 @@ nav {
   max-width: 380px;
 }
 
+.armour-card {
+  max-width: 380px;
+}
+
 .container {
   width: 80% !important;
 }
@@ -111,6 +115,12 @@ nav {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 1470px) {
+  .container {
+    width: 90% !important;
+  }
 }
 
 @media only screen and (max-width: 979px) {
