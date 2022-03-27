@@ -93,6 +93,10 @@ nav {
   max-width: 350px;
 }
 
+.weapon-card {
+  max-width: 380px;
+}
+
 .container {
   width: 80% !important;
 }

@@ -3,7 +3,7 @@
 <div class="list">
   {% for weapon in weapon_list %}
   <div class="card">
-    <div class="card-content scarab-card">
+    <div class="card-content weapon-card">
       <div class="card-title center">{{weapon.name}}</div>
       <div class="image-holder">
         <img class="img" src="{{weapon.icon}}" />
@@ -22,7 +22,9 @@
         {{weapon.explicitModifiers.1.text}} <br />
         {{weapon.explicitModifiers.2.text}}<br />
         {{weapon.explicitModifiers.3.text}}<br />
-        {{weapon.explicitModifiers.4.text}} {% endif %}
+        {{weapon.explicitModifiers.4.text}}<br />
+        {{weapon.explicitModifiers.5.text}}<br />
+        {% endif %}
       </p>
       {% if weapon.flavourText %}
       <p><span class="bold">Details:</span> {{weapon.flavourText}}</p>
