@@ -6,7 +6,7 @@
     <div class="card-content scarab-card">
       <span class="card-title">
         {{scarab.name}}
-        <img class="img" src="{{scarab.icon}}" />
+        <img class="img scarab-icon" src="{{scarab.icon}}" />
       </span>
       <p>
         <span class="bold">Effect:</span> {{scarab.explicitModifiers.0.text}}
@@ -14,7 +14,12 @@
       {% if scarab.flavourText %}
       <p><span class="bold">Details:</span> {{scarab.flavourText}}</p>
       {% endif %}
-      <p><span class="bold">Value:</span> {{scarab.chaosValue}} chaos orbs</p>
+      <p>
+        <span class="bold">Value:</span> {{scarab.chaosValue}}<img
+          src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png"
+          class="chaos-icon"
+        />
+      </p>
     </div>
   </div>
 

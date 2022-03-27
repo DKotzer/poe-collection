@@ -42,3 +42,10 @@ def armour(request):
   armours_list = response.json()
   armour_list = armours_list['lines']
   return render(request,'items/armour.html', {'armour_list': armour_list})
+
+def accessories(request):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
+  accessories_list = response.json()
+  accessory_list = accessories_list['lines']
+  return render(request,'items/accessories.html', {'accessory_list': accessory_list})
+

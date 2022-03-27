@@ -9,8 +9,17 @@
         <img class="img" src="{{armour.icon}}" />
       </div>
 
-      <p><span class="bold">Value:</span> {{armour.chaosValue}} chaos orbs</p>
-      {% if armour.implicitModifiers.0.text %}
+      <p>
+        <span class="bold">Value:</span> {{armour.chaosValue}}<img
+          src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png"
+          class="chaos-icon"
+        />
+      </p>
+      {% if armour.links %}
+      <p><span class="bold">Links:</span> {{armour.links}}</p>
+      {% else %}
+      <p><span class="bold">Links:</span> 1</p>
+      {% endif %} {% if armour.implicitModifiers.0.text %}
       <p>
         <span class="bold">Implicit:</span> {{armour.implicitModifiers.0.text}}
       </p>

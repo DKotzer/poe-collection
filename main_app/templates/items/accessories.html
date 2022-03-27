@@ -1,0 +1,44 @@
+{% extends "base.html"%} {% block content %}
+<h1>Accessories</h1>
+<div class="list">
+  {% for accessory in accessory_list %}
+  <div class="card">
+    <div class="card-content weapon-card">
+      <div class="card-title center">{{accessory.name}}</div>
+      <div class="image-holder">
+        <img class="img" src="{{accessory.icon}}" />
+      </div>
+
+      <p>
+        <span class="bold">Value:</span> {{accessory.chaosValue}}<img
+          src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png"
+          class="chaos-icon"
+        />
+      </p>
+      {% if accessory.implicitModifiers.0.text %}
+      <p>
+        <span class="bold">Implicit:</span>
+        {{accessory.implicitModifiers.0.text}}
+      </p>
+      {% endif %}
+      <p>
+        <span class="bold">Explicits:</span>
+        <br />
+        {{accessory.explicitModifiers.0.text}}<br />
+        {% if accessory.explicitModifiers.1.text %}
+        {{accessory.explicitModifiers.1.text}} <br />
+        {{accessory.explicitModifiers.2.text}}<br />
+        {{accessory.explicitModifiers.3.text}}<br />
+        {{accessory.explicitModifiers.4.text}}<br />
+        {{accessory.explicitModifiers.5.text}}<br />
+        {% endif %}
+      </p>
+      {% if accessory.flavourText %}
+      <p><span class="bold">Details:</span> {{accessory.flavourText}}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock %}
