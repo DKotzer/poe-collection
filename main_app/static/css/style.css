@@ -39,6 +39,7 @@ footer.page-footer {
   width: max-content;
   margin-left: 5px;
   margin-right: 5px;
+  background-color: rgba(245, 245, 245, 0.915) !important;
 }
 
 nav {
@@ -69,15 +70,15 @@ nav {
 }
 
 .card:hover {
-  transform: scale(1.04);
-  border: 2px solid rgba(0, 128, 0, 0.856);
+  /* transform: scale(1.04); */
+  outline: 6px solid #b40800;
 }
 
 .img:hover {
   margin: auto;
   /* width: 100%; */
   /* height: 100%; */
-  transform: scale(1.065);
+  transform: scale(1.075);
 }
 
 .center {
