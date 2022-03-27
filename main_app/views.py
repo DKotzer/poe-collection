@@ -49,3 +49,5 @@ def accessories(request):
   accessory_list = accessories_list['lines']
   return render(request,'items/accessories.html', {'accessory_list': accessory_list})
 
+def inventory(request):
+    return render(request,'items/inventory.html')
