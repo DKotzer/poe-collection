@@ -1,4 +1,4 @@
-book_list =[
+books_list =[
   {
     "author": "Chinua Achebe",
     "country": "Nigeria",
@@ -8,7 +8,6 @@ book_list =[
     "pages": 209,
     "title": "Things Fall Apart",
     "year": 1958,
-    "img": 'https://i.imgur.com/IyFMocu.jpeg'
   },
   {
     "author": "Hans Christian Andersen",

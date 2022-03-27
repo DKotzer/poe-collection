@@ -1,19 +1,16 @@
 body {
   /* background-color: #131a20; */
-
-  /* background: url("https://i.imgur.com/0SwZDVY.jpg"); */
   display: flex;
   min-height: 100vh;
-  flex-direction: column;
-}
-
-.below-nav {
-  background: url("/static/imgs/exarch.jpg");
-  /* background-size: contain; */
   background-size: 100%;
+  background: url("/static/imgs/exarch.jpg");
   background-attachment: fixed;
   background-position: center 62px;
   background-repeat: no-repeat;
+  /* background: url("https://i.imgur.com/0SwZDVY.jpg"); */
+
+  flex-direction: column;
+  /* background-size: contain; */
 }
 
 h1 {
@@ -42,10 +39,14 @@ footer.page-footer {
   background-color: rgba(245, 245, 245, 0.915) !important;
 }
 
+.card-content {
+  padding: 15px !important;
+}
+
 nav {
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #131a20f6 !important;
+  background-color: #131a20fb !important;
 }
 
 .currency {
@@ -110,4 +111,10 @@ nav {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 979px) {
+  .container {
+    width: 98% !important;
+  }
 }
