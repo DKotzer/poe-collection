@@ -43,7 +43,9 @@
         {{accessory.explicitModifiers.5.text}}<br />
         {% endif %}
       </p>
-      {% if accessory.flavourText %}
+      {% if '<<HBGAa>>' in accessory.flavourText %}
+      <p><span class="bold">Details:</span> Mysteryous Runes</p>
+      {% elif accessory.flavourText %}
       <p><span class="bold">Details:</span> {{accessory.flavourText}}</p>
       {% endif %}
     </div>
