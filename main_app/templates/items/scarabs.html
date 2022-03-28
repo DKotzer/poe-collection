@@ -6,7 +6,11 @@
     <div class="card-content scarab-card">
       <span class="card-title">
         {{scarab.name}}
-        <img class="img scarab-icon" src="{{scarab.icon}}" />
+        <img
+          class="img scarab-icon"
+          title="{{scarab.name}}"
+          src="{{scarab.icon}}"
+        />
       </span>
       <p>
         <span class="bold">Effect:</span> {{scarab.explicitModifiers.0.text}}

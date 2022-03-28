@@ -128,6 +128,16 @@ nav {
   top: 8px;
 }
 
+.x-icon {
+  width: 39px;
+  height: 39px;
+  position: relative;
+  top: 8px;
+}
+.x-icon:hover {
+  cursor: pointer;
+}
+
 .scarab-icon {
   width: 70px;
   height: 70px;
@@ -155,6 +165,14 @@ nav {
   justify-content: center;
 }
 
+.character-inventory img:hover {
+  transform: scale(1.135);
+}
+
+.character-accessories img:hover {
+  transform: scale(1.135);
+}
+
 .left-side {
   display: flex;
   flex-direction: column;
@@ -175,6 +193,16 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.above-inventory {
+  display: flex;
+  flex-direction: row;
+}
+
+.above-inventory img {
+  margin-left: 15px;
+  border-radius: 15px;
 }
 
 .character-accessories div {
@@ -220,6 +248,7 @@ nav {
 .item-list {
   display: flex;
   width: max-content;
+  flex-direction: column;
 }
 .item-list ul li img {
   position: relative;

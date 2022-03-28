@@ -6,9 +6,16 @@
     <div class="card-content weapon-card">
       <div class="card-title center">{{weapon.name}}</div>
       <div class="image-holder">
-        <img class="img" src="{{weapon.icon}}" />
+        <img class="img" title="{{weapon.name}}" src="{{weapon.icon}}" />
       </div>
-
+      {% if weapon.exaltedValue >= 1%}
+      <p>
+        <span class="bold">Value:</span> {{weapon.exaltedValue}}<img
+          src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToRare.png"
+          class="chaos-icon"
+        />
+      </p>
+      {% else %}
       <p>
         <span class="bold">Value:</span> {{weapon.chaosValue}}
         <img
@@ -16,6 +23,7 @@
           class="chaos-icon"
         />
       </p>
+      {%endif%}
       {% if weapon.links %}
       <p><span class="bold">Links:</span> {{weapon.links}}</p>
       {% else %}

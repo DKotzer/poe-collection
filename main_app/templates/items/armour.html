@@ -6,16 +6,23 @@
     <div class="card-content armour-card">
       <div class="card-title center">{{armour.name}}</div>
       <div class="image-holder">
-        <img class="img" src="{{armour.icon}}" />
+        <img class="img" title="{{armour.name}}" src="{{armour.icon}}" />
       </div>
-
+      {% if armour.exaltedValue >= 1%}
+      <p>
+        <span class="bold">Value:</span> {{armour.exaltedValue}}<img
+          src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToRare.png"
+          class="chaos-icon"
+        />
+      </p>
+      {% else %}
       <p>
         <span class="bold">Value:</span> {{armour.chaosValue}}<img
           src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png"
           class="chaos-icon"
         />
       </p>
-      {% if armour.links %}
+      {%endif%} {% if armour.links %}
       <p><span class="bold">Links:</span> {{armour.links}}</p>
       {% else %}
       <p><span class="bold">Links:</span> 1</p>

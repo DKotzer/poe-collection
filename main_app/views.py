@@ -11,8 +11,7 @@ new_book_list = sorted(books_list, key=lambda k: k['year'])
 def home(request):
     return render(request,'items/index.html', {'books': new_book_list})
 
-def about(request):
-    return render(request,'about.html')
+
 
 def items(request):
     return render(request,'items/index.html', {'books': new_book_list})
