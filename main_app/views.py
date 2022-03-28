@@ -23,7 +23,7 @@ def items(request):
 def currency(request):
   response = requests.get('https://poe.ninja/api/data/currencyoverview?league=Archnemesis&type=Currency')
   currencies_list = response.json()
-  currencies_list2 = currencies_list['currencyDetails']
+  currencies_list2 = currencies_list['currencyDetails'] 
   return render (request,'items/currency.html', {'currency_list': currencies_list2} )
 # def currency(request):
 #     return render(request,'items/currency.html', {'currency_list': currencyDetails})
@@ -38,6 +38,11 @@ def weapons(request):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueWeapon')
   weapons_list = response.json()
   weapon_list = weapons_list['lines']
+  for weapon in weapon_list:
+    for explicit in weapon['explicitModifiers']:
+        explicit = explicit['text']
+        print(explicit)
+    
   return render(request,'items/weapons.html', {'weapon_list': weapon_list})
 
 def armour(request):
@@ -54,3 +59,5 @@ def accessories(request):
 
 def inventory(request):
     return render(request,'items/inventory.html')
+  
+  

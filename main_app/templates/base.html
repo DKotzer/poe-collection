@@ -24,33 +24,33 @@
     <header class="navbar-fixed">
       <nav>
         <div class="nav-wrapper">
-          <a href="/" class="left brand-logo">Library</a>
+          <a href="{% url 'home' %}" class="left brand-logo">Library</a>
           <ul hide-on-med-and-down></ul>
           <div class="brand-logo center">
             <ul>
               <li>
-                <a href="/weapons">Weapons</a>
+                <a href="{% url 'weapons' %}">Weapons</a>
               </li>
               <li>
-                <a href="/armour">Armour</a>
+                <a href="{% url 'armour' %}">Armour</a>
               </li>
               <li>
-                <a href="/accessories">Accessories</a>
+                <a href="{% url 'accessories' %}">Accessories</a>
               </li>
               <li>
-                <a href="/inventory">Inventory</a>
+                <a href="{% url 'inventory' %}">Inventory</a>
               </li>
               <li>
-                <a href="/classes">Classes</a>
+                <a href="{% url 'classes' %}">Classes</a>
               </li>
               <li>
-                <a href="/items">Books</a>
+                <a href="{% url 'index' %}">Books</a>
               </li>
               <li>
-                <a href="/currency">Currency</a>
+                <a href="{% url 'currency' %}">Currency</a>
               </li>
               <li>
-                <a href="/scarabs">Scarabs</a>
+                <a href="{% url 'scarabs' %}">Scarabs</a>
               </li>
             </ul>
           </div>

@@ -264,6 +264,10 @@ nav {
   transform: scale(1.475);
 }
 
+.hidden {
+  /* display: none; */
+}
+
 @media only screen and (max-width: 1470px) {
   .container {
     width: 90% !important;
