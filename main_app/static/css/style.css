@@ -18,6 +18,10 @@ h1 {
   margin-left: 100px;
 }
 
+h3 {
+  text-align: center;
+}
+
 main {
   flex: 1 0 auto;
 }
@@ -79,7 +83,7 @@ nav {
   margin: auto;
   /* width: 100%; */
   /* height: 100%; */
-  transform: scale(1.075);
+  transform: scale(1.175);
 }
 
 .center {
@@ -129,6 +133,104 @@ nav {
   height: 70px;
   position: relative;
   top: 12px;
+}
+
+/*------------- inventory ------*/
+
+.inventory-container {
+  background-color: rgba(245, 245, 245, 0.724);
+  width: min-content;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 35px;
+  padding-top: 2px !important;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.character-inventory {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.middle-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.right-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.character-accessories {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.character-accessories div {
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: #131a20ef;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 4px;
+}
+
+.left-side div {
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: #131a20ef;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 4px;
+}
+.right-side div {
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: #131a20ef;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 4px;
+}
+.middle-side div {
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: #131a20ef;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 4px;
+}
+
+.item-list-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  padding-right: 50px;
+}
+.item-list {
+  display: flex;
+  width: max-content;
+}
+.item-list ul li img {
+  position: relative;
+  top: 15px;
+}
+
+.item-list ul li img:hover {
+  margin: auto;
+  /* width: 100%; */
+  /* height: 100%; */
+  transform: scale(1.475);
 }
 
 @media only screen and (max-width: 1470px) {

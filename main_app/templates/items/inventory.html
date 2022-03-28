@@ -1,73 +1,131 @@
 {% extends "base.html"%} {% block content %}
 
-<div class="character-inventory">
-  <div class="left-side">
-    <div class="left-weapon">
-      <img
-        src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9Ud29IYW5kV2VhcG9ucy9TdGF2ZXMvSW50cmVwaWR1c0RvbG9yZW0iLCJ3IjoyLCJoIjo0LCJzY2FsZSI6MX1d/8244c5f079/IntrepidusDolorem.png"
-        alt=""
-      />
-    </div>
-    <div class="boots">
-      <img
-        src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9Cb290cy9EZWF0aHNkb29yIiwidyI6MiwiaCI6Miwic2NhbGUiOjF9XQ/49384091d3/Deathsdoor.png"
-        alt=""
-      />
+<div class="inventory-container">
+  <div class="item-list-container">
+    <div class="item-list">
+      <ul>
+        <li>
+          Right Hand: Deaths Opus Bow
+          <img class="chaos-icon" src="/static/imgs/x.png" />
+        </li>
+        <li>
+          Left Hand: Asphyxias Wrath Quiver<img
+            class="chaos-icon"
+            src="/static/imgs/x.png"
+          />
+        </li>
+        <li>
+          Helm: Replica Shako<img class="chaos-icon" src="/static/imgs/x.png" />
+        </li>
+        <li>
+          Chest: Ferrals Fur<img class="chaos-icon" src="/static/imgs/x.png" />
+        </li>
+        <li>
+          Gloves: Hands of the High Templar<img
+            class="chaos-icon"
+            src="/static/imgs/x.png"
+          />
+        </li>
+        <li>
+          Boots: Deaths Door<img class="chaos-icon" src="/static/imgs/x.png" />
+        </li>
+        <li>
+          Belt: Mageblood<img class="chaos-icon" src="/static/imgs/x.png" />
+        </li>
+        <li>
+          Amulet: Crystallised Omniscience<img
+            class="chaos-icon"
+            src="/static/imgs/x.png"
+          />
+        </li>
+        <li>
+          Ring 1: Ventors Gamble<img
+            class="chaos-icon"
+            src="/static/imgs/x.png"
+          />
+        </li>
+        <li>
+          Ring 2: Ventors Gamble<img
+            class="chaos-icon"
+            src="/static/imgs/x.png"
+          />
+        </li>
+      </ul>
     </div>
   </div>
-  <div class="middle-side">
-    <div class="helm">
-      <img
-        src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL1RoZUVwaXBoYW55IiwidyI6MiwiaCI6Miwic2NhbGUiOjF9XQ/e8e44ba854/TheEpiphany.png"
-        alt=""
-      />
+  <div class="character-container">
+    <h3>Inventory</h3>
+    <div class="character-inventory">
+      <div class="left-side">
+        <div class="left-weapon">
+          <img
+            src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9Ud29IYW5kV2VhcG9ucy9Cb3dzL0RlYXRoc2hhcnAiLCJ3IjoyLCJoIjo0LCJzY2FsZSI6MX1d/488e5f6267/Deathsharp.png"
+            alt=""
+          />
+        </div>
+        <div class="boots">
+          <img
+            src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9Cb290cy9EZWF0aHNkb29yIiwidyI6MiwiaCI6Miwic2NhbGUiOjF9XQ/49384091d3/Deathsdoor.png"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="middle-side">
+        <div class="helm">
+          <img
+            src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL1RoZUVwaXBoYW55IiwidyI6MiwiaCI6Miwic2NhbGUiOjF9XQ/e8e44ba854/TheEpiphany.png"
+            alt=""
+          />
+        </div>
+        <div class="body-armour">
+          <img
+            src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9Cb2R5QXJtb3Vycy9UaWdlckJvZHlBcm1vdXIiLCJ3IjoyLCJoIjozLCJzY2FsZSI6MX1d/1cfa248b9b/TigerBodyArmour.png"
+            alt=""
+          />
+        </div>
+        <div class="belt">
+          <img
+            src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/21ec0269de/InjectorBelt.png"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="right-weapon">
+          <img
+            src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvUXVpdmVycy9Bc3BoeXhpYXNXcmF0aFJhY2VBbHQiLCJ3IjoyLCJoIjozLCJzY2FsZSI6MX1d/66d041ed4a/AsphyxiasWrathRaceAlt.png"
+            alt=""
+          />
+        </div>
+        <div class="gloves">
+          <img
+            src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9HbG92ZXMvSGFuZHNPZlRoZUhpZ2hUZW1wbGFyIiwidyI6MiwiaCI6Miwic2NhbGUiOjF9XQ/239b2df5cf/HandsOfTheHighTemplar.png"
+            alt=""
+          />
+        </div>
+      </div>
     </div>
-    <div class="body-armour">
-      <img
-        src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9Cb2R5QXJtb3Vycy9UaWdlckJvZHlBcm1vdXIiLCJ3IjoyLCJoIjozLCJzY2FsZSI6MX1d/1cfa248b9b/TigerBodyArmour.png"
-        alt=""
-      />
+    <div class="character-accessories">
+      <div class="amulet">
+        <img
+          src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQW11bGV0cy9Bc2NlbmRhbmNlQW11bGV0IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/60368620d5/AscendanceAmulet.png"
+          alt=""
+        />
+      </div>
+
+      <div class="leftring">
+        <img
+          src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvUmluZ3MvRGllT2ZEZXN0aW55IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/1470dfcdce/DieOfDestiny.png"
+          alt=""
+        />
+      </div>
+      <div class="rightring">
+        <img
+          src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvUmluZ3MvRGllT2ZEZXN0aW55IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/1470dfcdce/DieOfDestiny.png"
+          alt=""
+        />
+      </div>
     </div>
-  </div>
-  <div class="right-side">
-    <div class="right-weapon">
-      <img
-        src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9Ud29IYW5kV2VhcG9ucy9TdGF2ZXMvSW50cmVwaWR1c0RvbG9yZW0iLCJ3IjoyLCJoIjo0LCJzY2FsZSI6MX1d/8244c5f079/IntrepidusDolorem.png"
-        alt=""
-      />
-    </div>
-    <div class="gloves">
-      <img
-        src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9HbG92ZXMvSGFuZHNPZlRoZUhpZ2hUZW1wbGFyIiwidyI6MiwiaCI6Miwic2NhbGUiOjF9XQ/239b2df5cf/HandsOfTheHighTemplar.png"
-        alt=""
-      />
-    </div>
-  </div>
-</div>
-<div class="character-accessories">
-  <div class="amulet">
-    <img
-      src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQW11bGV0cy9Bc2NlbmRhbmNlQW11bGV0IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/60368620d5/AscendanceAmulet.png"
-      alt=""
-    />
-  </div>
-  <div class="belt">
-    <img
-      src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/21ec0269de/InjectorBelt.png"
-      alt=""
-    />
-  </div>
-  <div class="leftring">
-    <img
-      src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvUmluZ3MvRGllT2ZEZXN0aW55IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/1470dfcdce/DieOfDestiny.png"
-      alt=""
-    />
-  </div>
-  <div class="rightring">
-    <img
-      src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvUmluZ3MvRGllT2ZEZXN0aW55IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/1470dfcdce/DieOfDestiny.png"
-      alt=""
-    />
   </div>
 </div>
 
