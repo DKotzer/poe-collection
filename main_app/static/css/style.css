@@ -218,8 +218,8 @@ nav {
 
 .left-side div {
   border: 1px solid black;
-  border-radius: 15px;
-  background-color: #131a20ef;
+  border-radius: 5px;
+  /* background-color: #131a20ef; */
   padding-left: 4px;
   padding-right: 4px;
   padding-top: 4px;
@@ -252,6 +252,20 @@ nav {
   width: max-content;
   flex-direction: column;
 }
+
+.left-weapon {
+  background: url("/static/imgs/weapon.png");
+  background-size: 100%;
+  padding: 2px;
+}
+
+.boots {
+  background: url("/static/imgs/boots.png");
+  background-size: cover;
+  padding: 2px;
+  background-repeat: no-repeat;
+}
+
 .item-list ul li img {
   position: relative;
   top: 9px;
@@ -265,7 +279,7 @@ nav {
 }
 
 .hidden {
-  /* display: none; */
+  display: none;
 }
 
 @media only screen and (max-width: 1470px) {
