@@ -8,14 +8,21 @@
       <div class="image-holder">
         <img class="img" title="{{accessory.name}}" src="{{accessory.icon}}" />
       </div>
-
+      {% if accessory.exaltedValue >= 1%}
+      <p>
+        <span class="bold">Value:</span> {{accessory.exaltedValue}}<img
+          src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToRare.png"
+          class="chaos-icon"
+        />
+      </p>
+      {% else %}
       <p>
         <span class="bold">Value:</span> {{accessory.chaosValue}}<img
           src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png"
           class="chaos-icon"
         />
       </p>
-      {% if accessory.implicitModifiers.0.text %}
+      {%endif%} {% if accessory.implicitModifiers.0.text %}
       <p>
         <span class="bold">Implicit:</span>
         {{accessory.implicitModifiers.0.text}}

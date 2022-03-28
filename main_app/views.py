@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.templatetags.static import static
 import requests
 from main_app.books import books_list
+from main_app.classes import class_list
 
 
 new_book_list = sorted(books_list, key=lambda k: k['year'])
@@ -10,6 +11,9 @@ new_book_list = sorted(books_list, key=lambda k: k['year'])
 # Create your views here.
 def home(request):
     return render(request,'items/index.html', {'books': new_book_list})
+  
+def classes(request):
+  return render(request,'items/classes.html', {'classes': class_list})
 
 
 

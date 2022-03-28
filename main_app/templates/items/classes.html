@@ -1,0 +1,22 @@
+{% extends "base.html"%} {% block content %}
+<h1>Ascendancies</h1>
+
+<div class="list">
+  {% for class in classes %}
+  <div class="card">
+    <div class="card-content class-container">
+      <span class="card-title"> {{class.name}} </span>
+      <p>
+        <img class="img" src="{{ class.image }}" />
+      </p>
+
+      {% comment %}
+      <p>Image:<img class="img" src="{% static book.imageLink %}" /></p>
+      {% endcomment %} {% comment %}
+      <p><img src="{% static book.imageLink %}" /></p>
+      {% endcomment %}
+    </div>
+  </div>
+
+  {% endfor %} {% endblock %}
+</div>
