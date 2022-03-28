@@ -30,13 +30,16 @@
       {% endif %}
       <p>
         <span class="bold">Explicits:</span>
-        <br />
-        {{accessory.explicitModifiers.0.text}}<br />
+        <br />{{accessory.explicitModifiers.0.text}}<br />
         {% if accessory.explicitModifiers.1.text %}
         {{accessory.explicitModifiers.1.text}} <br />
+        {%endif%} {% if accessory.explicitModifiers.2.text %}
         {{accessory.explicitModifiers.2.text}}<br />
+        {% endif %} {% if accessory.explicitModifiers.3.text %}
         {{accessory.explicitModifiers.3.text}}<br />
+        {% endif %} {% if accessory.explicitModifiers.4.text %}
         {{accessory.explicitModifiers.4.text}}<br />
+        {% endif %} {% if accessory.explicitModifiers.5.text %}
         {{accessory.explicitModifiers.5.text}}<br />
         {% endif %}
       </p>
