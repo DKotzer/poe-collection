@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.templatetags.static import static
 import requests
+from .models import Character
 from main_app.books import books_list
 from main_app.classes import class_list
 
@@ -76,5 +77,9 @@ def accessories(request):
 
 def inventory(request):
     return render(request,'items/inventory.html')
+  
+def characters(request):
+    characters = Character.objects.all()
+    return render(request,'items/characters.html', {'characters':characters})
   
   

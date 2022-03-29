@@ -1,0 +1,53 @@
+{% extends "base.html"%} {% block content %} {% for character in characters%}
+
+<div class="inventory-container">
+  <div class="character-container">
+    <div class="above-inventory">
+      <h3>{{character.name}}</h3>
+      <img src="{{character.ascendancy}}" alt="" />
+    </div>
+
+    <div class="character-inventory">
+      <div class="left-side">
+        <div class="left-weapon">
+          <img src="{{character.right_hand}}" alt="" />
+        </div>
+        <div class="boots">
+          <img src="{{character.boots}}" alt="" />
+        </div>
+      </div>
+      <div class="middle-side">
+        <div class="helm">
+          <img src="{{character.helm}}" alt="" />
+        </div>
+        <div class="body-armour">
+          <img src="{{character.chest}}" alt="" />
+        </div>
+        <div class="belt">
+          <img src="{{character.belt}}" alt="" />
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="right-weapon">
+          <img src="{{character.left_hand}}" alt="" />
+        </div>
+        <div class="gloves">
+          <img src="{{character.gloves}}" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="character-accessories">
+      <div class="amulet">
+        <img src="{{character.amulet}}" alt="" />
+      </div>
+
+      <div class="leftring">
+        <img src="{{character.ring1}}" alt="" />
+      </div>
+      <div class="rightring">
+        <img src="{{character.ring2}}" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+{%endfor%} {% endblock %}
