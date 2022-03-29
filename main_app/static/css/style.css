@@ -358,12 +358,17 @@ nav {
   transform: scale(1.475);
 }
 
-.hidden {
+/* .hidden {
   display: none;
+} */
+
+.form-area {
+  background-color: grey;
+  width: 50%;
 }
 
-textarea {
-  resize: none;
+.form-area label {
+  color: black;
 }
 
 @media only screen and (max-width: 1470px) {

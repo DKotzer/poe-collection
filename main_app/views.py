@@ -1,12 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.templatetags.static import static
 import requests
-from .models import Character
+from .models import Character, Item
 from main_app.books import books_list
 from main_app.classes import class_list
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 new_book_list = sorted(books_list, key=lambda k: k['year'])
+
+class CharacterCreate(CreateView):
+    model = Character
+    fields = '__all__'
+    # success_url = "/characters/" 
+
+class CharacterUpdate(UpdateView):
+    model = Character
+    fields = '__all__'
+
+class CharacterDelete(DeleteView):
+    model = Character
+    success_url = "/characters/"
 
 # Create your views here.
 def home(request):
@@ -39,6 +53,8 @@ def weapons(request):
   for weapon in weapon_list:
     explicit_holder = ['<p>',]
     for explicit in weapon['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
         explicit_holder.append(explicit['text'])
         explicit_holder.append('<br />')
     explicit_holder.pop()
@@ -66,6 +82,8 @@ def armour(request):
   for armour in armour_list:
     explicit_holder = ['<p>',]
     for explicit in armour['explicitModifiers']:
+        if explicit['optional'] == True:
+            explicit_holder.append('*')
         explicit_holder.append(explicit['text'])
         explicit_holder.append('<br />')
     explicit_holder.pop()
@@ -82,6 +100,8 @@ def accessories(request):
   for accessory in accessory_list:
     explicit_holder = ['<p>',]
     for explicit in accessory['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
         explicit_holder.append(explicit['text'])
         explicit_holder.append('<br />')
     explicit_holder.pop()
@@ -98,4 +118,20 @@ def characters(request):
     characters = Character.objects.all()
     return render(request,'items/characters.html', {'characters':characters})
   
+def character(request, character_id):
+    character = Character.objects.get(id=character_id)
+    return render(request,'items/character.html', {'character':character})
   
+# class CharacterUpdate(UpdateView):
+#   model = Character
+#   fields = ['breed','description','age']
+
+def weapon_equip(request):
+  print("This is a string - testing")
+  print(request.POST)
+  item = Item(request.POST)
+  print(f"this is the data we are looking for!!! {item}")
+  Item.objects.create(name=request.POST.get('name'),image=request.POST.get('image'),implicit=request.POST.get('implicit'),explicits=request.POST.get('explicits'),item_type=request.POST.get('item_type'),price=request.POST.get('price'),api_id=request.POST.get('api_id') )
+  # item_insert = item.save(commit=False)
+  # item.save()
+  return redirect('weapons')

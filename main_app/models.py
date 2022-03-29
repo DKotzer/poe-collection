@@ -1,6 +1,7 @@
 from django.db import models
-
+from django.urls import reverse
 # Create your models here.
+
 
 class Character(models.Model):
     name = models.CharField(max_length=255)
@@ -16,14 +17,22 @@ class Character(models.Model):
     ring1 = models.CharField(max_length=255, default=None, blank=True)
     ring2 = models.CharField(max_length=255, default=None, blank=True)
     
+    def get_absolute_url(self):
+        return reverse("character", kwargs={"character_id": self.id})
+    
+    
+    
 
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
     image = models.CharField(max_length=1000)
-    implicit = models.CharField(max_length=255)
-    explicits = models.TextField(max_length=2000)
+    implicit = models.CharField(max_length=255,default=None, blank=True, null=True)
+    explicits = models.TextField(max_length=2000,default=None, blank=True, null=True)
     item_type = models.CharField(max_length=100)
-    price = models.IntegerField()
+    price = models.FloatField()
+    api_id = models.IntegerField(default=1)
+    
+    
     
 

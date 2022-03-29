@@ -12,8 +12,19 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
     />
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".button-collapse").sideNav();
+      });
+    </script>
     <link
       rel="stylesheet"
       type="text/css"
@@ -21,13 +32,17 @@
     />
   </head>
   <body>
+    {% comment %}
     <header class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper">
-          <a href="{% url 'home' %}" class="left brand-logo">Library</a>
-          <ul hide-on-med-and-down></ul>
-          <div class="brand-logo center">
-            <ul>
+      {% endcomment %}
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="{% url 'home' %}" class="brand-logo">Library</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"
+              ><i class="material-icons">menu</i></a
+            >
+            <ul class="right hide-on-med-and-down">
               <li>
                 <a href="{% url 'weapons' %}">Weapons</a>
               </li>
@@ -54,20 +69,53 @@
               </li>
             </ul>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
+      <ul class="side-nav" id="mobile-demo">
+        <li>
+          <a href="{% url 'weapons' %}">Weapons</a>
+        </li>
+        <li>
+          <a href="{% url 'armour' %}">Armour</a>
+        </li>
+        <li>
+          <a href="{% url 'accessories' %}">Accessories</a>
+        </li>
+        <li>
+          <a href="{% url 'inventory' %}">Inventory</a>
+        </li>
+        <li>
+          <a href="{% url 'characters' %}">Characters</a>
+        </li>
+        <li>
+          <a href="{% url 'classes' %}">Classes</a>
+        </li>
+        <li>
+          <a href="{% url 'currency' %}">Currency</a>
+        </li>
+        <li>
+          <a href="{% url 'scarabs' %}">Scarabs</a>
+        </li>
+      </ul>
+
+      {% comment %}
     </header>
+    {% endcomment %}
 
     <main class="container">{% block content %} {% endblock %}</main>
 
     <footer class="page-footer">
       <div class="center">All Rights reserved &copy; 2022 Library</div>
     </footer>
+    <!-- Compiled and minified JavaScript -->
+
+    {% comment %}
     <script language="javascript">
       document.addEventListener("DOMContentLoaded", function () {
         var elems = document.querySelectorAll(".sidenav");
-        var instances = M.Sidenav.init(elems);
+        var instances = M.Sidenav.init(elems, options);
       });
     </script>
+    {% endcomment %}
   </body>
 </html>

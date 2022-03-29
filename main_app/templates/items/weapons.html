@@ -44,8 +44,9 @@
       <p><span class="bold">Details:</span> {{weapon.flavourText}}</p>
       {% endif %}
       <div class="invisibleForm">
-      <form class="hiddenForm" action="/character/addWeapon" method="post" id="weaponForm">
+      <form class="hiddenForm" action="/weapon_equip/" method="post" id="weaponForm">
           {% comment %} <input class="hidden" type="text" name="symbol" value="<%=symbol%>" /> {% endcomment %}
+          {% csrf_token %}
           <input
             class="hidden"
             type="text"
@@ -54,9 +55,15 @@
           />
           <input
             class="hidden"
-            type="text"
+            type="number"
             name="price"
             value="{{weapon.chaosValue}}"
+          />
+          <input
+            class="hidden"
+            type="number"
+            name="api_id"
+            value="{{weapon.id}}"
           />
           <input
             class="hidden"
@@ -74,7 +81,7 @@
           <textarea
             class="hidden"
             type="text"
-            name="implicit"
+            name="explicits"
             form="weaponForm"
             
           />{{weapon.explicit_holder}}"</textarea>
@@ -103,3 +110,14 @@
   {% endfor %}
 </div>
 {% endblock %}
+<p>
++12% Chance to Block Attack Damage while wielding a Staff
+<br />
+100% increased Physical Damage
+<br />
+(5-10)% increased Attack Speed
+<br />
+Reflects (22-44) Physical Damage to Attackers on Block
+<br />
+Curse Enemies with Vulnerability on Block, with 20% increased Effect
+</p>"
