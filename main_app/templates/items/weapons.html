@@ -51,6 +51,15 @@
         {% if weapon.explicitModifiers.5.text %}
         {{weapon.explicitModifiers.5.text}}<br />
         {% endif %}
+        {% if weapon.explicitModifiers.6.text %}
+        {{weapon.explicitModifiers.6.text}}<br />
+        {% endif %}
+        {% if weapon.explicitModifiers.7.text %}
+        {{weapon.explicitModifiers.7.text}}<br />
+        {% endif %}
+      </p>
+        <span class="bold">Explicits Test:</span>
+        {{weapon.explicit_holder}}
 
 
         
@@ -62,7 +71,7 @@
       <p><span class="bold">Details:</span> {{weapon.flavourText}}</p>
       {% endif %}
       <div class="invisibleForm">
-      <form class="hiddenForm" action="/character/addWeapon" method="post">
+      <form class="hiddenForm" action="/character/addWeapon" method="post" id="weaponForm">
           {% comment %} <input class="hidden" type="text" name="symbol" value="<%=symbol%>" /> {% endcomment %}
           <input
             class="hidden"
@@ -86,14 +95,16 @@
             class="hidden"
             type="text"
             name="implicit"
+            form="weaponForm"
             value="{{weapon.implicitModifiers.0.text}}"
           />
-          <input
+          <textarea
             class="hidden"
-            type="textarea"
-            name="explicits"
-            value="{{weapon.explicit_holder}}"
-          />
+            type="text"
+            name="implicit"
+            form="weaponForm"
+            
+          />{{weapon.explicit_holder}}"</textarea>
           <input
             class="hidden"
             type="text"

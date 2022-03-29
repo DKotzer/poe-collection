@@ -40,15 +40,21 @@ def weapons(request):
   weapons_list = response.json()
   weapon_list = weapons_list['lines']
   for weapon in weapon_list:
-    explicit_holder = []
+    explicit_holder = ['<p>',]
     for explicit in weapon['explicitModifiers']:
         explicit_holder.append(explicit['text'])
-        explicit = explicit['text']
+        explicit_holder.append('<br />')
+        # explicit = explicit['text']
         # print(explicit['text'])
     print(explicit_holder)
-    weapon['explicit_holder'] = explicit_holder
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_string = "\n".join(explicit_split)
+    weapon['explicit_holder'] = explicit_string
     print(weapon['explicit_holder'])
   return render(request,'items/weapons.html', {'weapon_list': weapon_list})
+
 
 # def weapons(request):
 #   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueWeapon')
