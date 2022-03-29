@@ -6,7 +6,6 @@ from .models import Character
 from main_app.books import books_list
 from main_app.classes import class_list
 
-
 new_book_list = sorted(books_list, key=lambda k: k['year'])
 
 # Create your views here.
@@ -15,8 +14,6 @@ def home(request):
   
 def classes(request):
   return render(request,'items/classes.html', {'classes': class_list})
-
-
 
 def items(request):
     return render(request,'items/index.html', {'books': new_book_list})
@@ -44,17 +41,12 @@ def weapons(request):
     for explicit in weapon['explicitModifiers']:
         explicit_holder.append(explicit['text'])
         explicit_holder.append('<br />')
-        # explicit = explicit['text']
-        # print(explicit['text'])
-    print(explicit_holder)
     explicit_holder.pop()
     explicit_holder.append('</p>')
     explicit_split = explicit_holder[0:]
     explicit_string = "\n".join(explicit_split)
     weapon['explicit_holder'] = explicit_string
-    print(weapon['explicit_holder'])
   return render(request,'items/weapons.html', {'weapon_list': weapon_list})
-
 
 # def weapons(request):
 #   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueWeapon')
@@ -67,18 +59,36 @@ def weapons(request):
 #     weapon['explicit_holder'] = explicit_holder
 #     print(explicit_holder)
 
-
-
 def armour(request):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
   armours_list = response.json()
   armour_list = armours_list['lines']
+  for armour in armour_list:
+    explicit_holder = ['<p>',]
+    for explicit in armour['explicitModifiers']:
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_string = "\n".join(explicit_split)
+    armour['explicit_holder'] = explicit_string
   return render(request,'items/armour.html', {'armour_list': armour_list})
 
 def accessories(request):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
   accessories_list = response.json()
   accessory_list = accessories_list['lines']
+  for accessory in accessory_list:
+    explicit_holder = ['<p>',]
+    for explicit in accessory['explicitModifiers']:
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_string = "\n".join(explicit_split)
+    accessory['explicit_holder'] = explicit_string
   return render(request,'items/accessories.html', {'accessory_list': accessory_list})
 
 def inventory(request):
