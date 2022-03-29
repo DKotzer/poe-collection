@@ -4,17 +4,17 @@ from django.db import models
 
 class Character(models.Model):
     name = models.CharField(max_length=255)
-    ascendancy = models.CharField(max_length=255)
-    right_hand = models.CharField(max_length=255)
-    left_hand = models.CharField(max_length=255)
-    helm = models.CharField(max_length=255)
-    chest = models.CharField(max_length=255)
-    gloves = models.CharField(max_length=255)
-    boots = models.CharField(max_length=255)
-    belt = models.CharField(max_length=255)
-    amulet = models.CharField(max_length=255)
-    ring1 = models.CharField(max_length=255)
-    ring2 = models.CharField(max_length=255)
+    ascendancy = models.CharField(max_length=255, default=None, blank=True)
+    right_hand = models.CharField(max_length=255, default=None, blank=True)
+    left_hand = models.CharField(max_length=255, default=None, blank=True)
+    helm = models.CharField(max_length=255, default=None, blank=True)
+    chest = models.CharField(max_length=255, default=None, blank=True)
+    gloves = models.CharField(max_length=255, default=None, blank=True)
+    boots = models.CharField(max_length=255, default=None, blank=True)
+    belt = models.CharField(max_length=255, default=None, blank=True)
+    amulet = models.CharField(max_length=255, default=None, blank=True)
+    ring1 = models.CharField(max_length=255, default=None, blank=True)
+    ring2 = models.CharField(max_length=255, default=None, blank=True)
     
 
 
