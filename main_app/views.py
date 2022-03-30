@@ -127,7 +127,7 @@ def character(request, character_id):
 #   fields = ['breed','description','age']
 
 def weapon_equip(request):
-  print("This is a string - testing")
+  print("This is a string - testing below")
   print(request.POST)
   item = Item(request.POST)
   print(f"this is the data we are looking for!!! {item}")

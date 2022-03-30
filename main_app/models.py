@@ -33,6 +33,15 @@ class Item(models.Model):
     price = models.FloatField()
     api_id = models.IntegerField(default=1)
     
+    def __str__(self):
+        return self.name
+    
     
     
 
+class Image(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.CharField(max_length=1000)
+    
+    def __str__(self):
+        return self.name
