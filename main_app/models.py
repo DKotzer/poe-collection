@@ -27,21 +27,18 @@ class Character(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=255)
     image = models.CharField(max_length=1000)
-    implicit = models.CharField(max_length=255,default=None, blank=True, null=True)
+    implicit = models.CharField(max_length=400,default=None, blank=True, null=True)
     explicits = models.TextField(max_length=2000,default=None, blank=True, null=True)
     item_type = models.CharField(max_length=100)
     price = models.FloatField()
     api_id = models.IntegerField(default=1)
-    
-    def __str__(self):
-        return self.name
-    
+    #change the on_delete after switching to many to many
     
     
 
 class Image(models.Model):
     name = models.CharField(max_length=255)
     image = models.CharField(max_length=1000)
+    item_type = models.CharField(max_length=1000)
+    character = models.ForeignKey(Character, on_delete=models.CASCADE)
     
-    def __str__(self):
-        return self.name

@@ -381,4 +381,7 @@ nav {
   .container {
     width: 98% !important;
   }
+  body {
+    background-position: center 56px;
+  }
 }
