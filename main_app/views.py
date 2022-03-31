@@ -38,7 +38,8 @@ class CharacterDelete(DeleteView):
 
 # Create your views here.
 def home(request):
-    return render(request,'items/index.html', {'books': new_book_list})
+  characters = Character.objects.all()
+  return render(request,'items/characters.html', {'books': new_book_list, 'characters': characters} )
   
 def classes(request):
   return render(request,'items/classes.html', {'classes': class_list})

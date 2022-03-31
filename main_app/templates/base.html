@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library</title>
+    <title>Exile Builder</title>
     <link
       rel="icon"
       href="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png"
@@ -38,36 +38,38 @@
       <div class="navbar-fixed">
         <nav>
           <div class="nav-wrapper">
-            <a href="{% url 'home' %}" class="brand-logo">Library</a>
+            <a href="{% url 'home' %}" class="brand-logo">Exile Builder</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"
               ><i class="material-icons">menu</i></a
             >
-            <ul class="right hide-on-med-and-down">
-              <li>
-                <a href="{% url 'weapons' %}">Weapons</a>
-              </li>
-              <li>
-                <a href="{% url 'armour' %}">Armour</a>
-              </li>
-              <li>
-                <a href="{% url 'accessories' %}">Accessories</a>
-              </li>
-              <li>
-                <a href="{% url 'inventory' %}">Inventory</a>
-              </li>
-              <li>
-                <a href="{% url 'characters' %}">Characters</a>
-              </li>
-              <li>
-                <a href="{% url 'classes' %}">Classes</a>
-              </li>
-              <li>
-                <a href="{% url 'currency' %}">Currency</a>
-              </li>
-              <li>
-                <a href="{% url 'scarabs' %}">Scarabs</a>
-              </li>
-            </ul>
+            <div class="brand-logo center">
+              <ul class="right hide-on-med-and-down nowrap">
+                <li>
+                  <a href="{% url 'weapons' %}">Weapons</a>
+                </li>
+                <li>
+                  <a href="{% url 'armour' %}">Armour</a>
+                </li>
+                <li>
+                  <a href="{% url 'accessories' %}">Accessories</a>
+                </li>
+                <li>
+                  <a href="{% url 'inventory' %}">Inventory</a>
+                </li>
+                <li>
+                  <a href="{% url 'characters' %}">Characters</a>
+                </li>
+                <li>
+                  <a href="{% url 'classes' %}">Classes</a>
+                </li>
+                <li>
+                  <a href="{% url 'currency' %}">Currency</a>
+                </li>
+                <li>
+                  <a href="{% url 'scarabs' %}">Scarabs</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
       </div>
@@ -105,7 +107,7 @@
     <main class="container">{% block content %} {% endblock %}</main>
 
     <footer class="page-footer">
-      <div class="center">All Rights reserved &copy; 2022 Library</div>
+      <div class="center">All Rights reserved &copy; 2022 Exile Builder</div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
