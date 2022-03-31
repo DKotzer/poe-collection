@@ -325,6 +325,18 @@ def right_weapons(request, character_id):
   return render(request,'items/right_weapons.html', {'right_weapon_list': right_weapon_list, 'character_id':character_id})
 
 def right_weapon_equip(request, character_id, item_id):
+  char = Character.objects.get(pk=character_id)
+  if char.right_hand != "/static/imgs/plus.png":
+    print("testtesttest")
+    # weapon_select = char.filter(item_type)
+    oldleft_weapon = Item.objects.filter(character=character_id, item_type__in = ['One Handed Sword', 'Two Handed Sword', 'Staff', 'Two Handed Axe', 'One Handed Axe', 'Two Handed Mace', 'Bow', 'One Handed Mace', 'Dagger', 'Wand', 'Claw'])
+    print("old weapon", oldleft_weapon)
+    # oldleft_weapon = Item.objects.get(character=character_id , and item_type in ['One' 'Handed Sword', 'Two Handed' 'Sword', 'Staff'])
+    # oldleft_weapon = Item.objects.get(character=character_id , and item_type in ['One' 'Handed Sword', 'Two Handed' 'Sword', 'Staff'])
+    
+    # One Handed Sword, Two Handed Sword, Staff, Two Handed Axe, One Handed Axe, Two Handed Mace, Bow, One Handed Mace, Dagger, Wand, Claw
+    # print(oldleft_weapon.id)
+    oldleft_weapon.delete()
   
   item = Item.objects.create(
     name=request.POST['name'],
@@ -481,6 +493,12 @@ def gloves(request, character_id):
 
 def glove_equip(request, character_id, item_id):
   
+  char = Character.objects.get(pk=character_id)
+  if char.gloves != "/static/imgs/plus.png":
+    oldglove = Item.objects.get(character=character_id , item_type = 'Gloves')
+    
+    oldglove.delete()
+  
   item = Item.objects.create(
     name=request.POST['name'],
     image=request.POST['image'],
@@ -518,6 +536,7 @@ def left_weapons(request, character_id):
   return render(request,'items/left_weapons.html', {'left_weapon_list': left_weapon_list, 'character_id':character_id})
 
 def left_weapon_equip(request, character_id, item_id):
+  
   
   item = Item.objects.create(
     name=request.POST['name'],
@@ -558,19 +577,10 @@ def belts(request, character_id):
 def belt_equip(request, character_id, item_id):
   #if belt image is not default, find belt in items that matches character_id and delete it
   char = Character.objects.get(pk=character_id)
-  print("char here",char)
-  print(char.items.all())
-  print(item_id)
   if char.belt != "/static/imgs/smallplus.png":
     oldbelt = Item.objects.get(character=character_id , item_type = 'Belt')
     print(oldbelt.id)
     oldbelt.delete()
-  # if char.belt != "/static/imgs/smallplus.png":
-    # oldbelt = char.items.get(item_id)
-  #  oldbelt = Item.objects.get(id=character_id, item_type ='Belt')
-    # print(oldbelt)
-  # oldbelt = Item.objects.get(character=character_id, item_type = 'Belt')
-  
   
   item = Item.objects.create(
     name=request.POST['name'],

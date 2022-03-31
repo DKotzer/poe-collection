@@ -41,7 +41,7 @@
       <p><span class="bold">Details:</span> {{armour.flavourText}}</p>
       {% endif %}
       <div class="invisibleForm">
-      <form class="hiddenForm" action="{% url 'left_weapon_equip' character_id armour.id %}" method="post" id="armourForm">
+      <form class="hiddenForm" action="{% url 'left_weapon_equip' character_id weapon.id %}" method="post" id="armourForm">
           {% comment %} <input class="hidden" type="text" name="symbol" value="<%=symbol%>" /> {% endcomment %}
           {% csrf_token %}
           <input
