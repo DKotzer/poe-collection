@@ -558,8 +558,19 @@ def belts(request, character_id):
 def belt_equip(request, character_id, item_id):
   #if belt image is not default, find belt in items that matches character_id and delete it
   char = Character.objects.get(pk=character_id)
+  print("char here",char)
+  print(char.items.all())
+  print(item_id)
   if char.belt != "/static/imgs/smallplus.png":
-    Item.objects.get(id=character_id, item_type = 'Belt')
+    oldbelt = Item.objects.get(character=character_id , item_type = 'Belt')
+    print(oldbelt.id)
+    oldbelt.delete()
+  # if char.belt != "/static/imgs/smallplus.png":
+    # oldbelt = char.items.get(item_id)
+  #  oldbelt = Item.objects.get(id=character_id, item_type ='Belt')
+    # print(oldbelt)
+  # oldbelt = Item.objects.get(character=character_id, item_type = 'Belt')
+  
   
   item = Item.objects.create(
     name=request.POST['name'],

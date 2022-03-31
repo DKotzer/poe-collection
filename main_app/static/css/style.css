@@ -377,9 +377,9 @@ select {
   transform: scale(1.475);
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
 
 .form-area {
   background-color: grey;

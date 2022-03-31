@@ -64,7 +64,7 @@ class Character(models.Model):
         return reverse("character", kwargs={"character_id": self.id})
     
     def __str__(self):
-        return {self.name}
+        return self.name
 
 
 
