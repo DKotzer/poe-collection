@@ -43,66 +43,7 @@
       {% elif weapon.flavourText%}
       <p><span class="bold">Details:</span> {{weapon.flavourText}}</p>
       {% endif %}
-      <div class="invisibleForm">
-      <form class="hiddenForm" action="/weapon_equip/" method="post" id="weaponForm">
-          {% comment %} <input class="hidden" type="text" name="symbol" value="<%=symbol%>" /> {% endcomment %}
-          {% csrf_token %}
-          <input
-            class="hidden"
-            type="text"
-            name="name"
-            value="{{weapon.name}}"
-          />
-          <input
-            class="hidden"
-            type="number"
-            name="price"
-            value="{{weapon.chaosValue}}"
-          />
-          <input
-            class="hidden"
-            type="number"
-            name="api_id"
-            value="{{weapon.id}}"
-          />
-          <input
-            class="hidden"
-            type="text"
-            name="image"
-            value="{{weapon.icon}}"
-          />
-          <input
-            class="hidden"
-            type="text"
-            name="implicit"
-            value="{{weapon.implicitModifiers.0.text}}"
-          />
-
-          <input
-            class="hidden"
-            type="text"
-            name="explicits"
-            value="{{weapon.explicit_holder}}"
-          />
-          
-          <input
-            class="hidden"
-            type="text"
-            name="item_type"
-            value="{{weapon.itemType}}"
-          />
-          
-
-          <div>
-            <button
-              class=""
-              type="submit"
-            >
-              Equip
-            </button>
-          </div>
-        </form>
-    </div>
+    
     </div>
     
   </div>
