@@ -278,3 +278,111 @@ def right_weapon_equip(request, character_id, item_id):
   )
   Character.objects.get(id=character_id).items.add(item)
   return redirect('character', character_id=character_id)
+
+
+
+def boots(request, character_id):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
+  armours_list = response.json()
+  armour_list = armours_list['lines']
+  
+  
+  boot_list = [armour for armour in armour_list if armour['itemType']=="Boots"]
+  for armour in boot_list:
+    explicit_holder = ['<p>',]
+    for explicit in armour['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_stboot = "\n".join(explicit_split)
+    armour['explicit_holder'] = explicit_stboot
+  return render(request,'items/boots.html', {'boot_list': boot_list, 'character_id':character_id})
+
+def boot_equip(request, character_id, item_id):
+  
+  item = Item.objects.create(
+    name=request.POST['name'],
+    image=request.POST['image'],
+    implicit=request.POST['implicit'],
+    explicits=request.POST['explicits'],
+    item_type=request.POST['item_type'],
+    price=request.POST['price'],
+    api_id = request.POST['api_id'],
+  )
+  Character.objects.get(id=character_id).items.add(item)
+  #
+  return redirect('character', character_id=character_id)
+
+def helms(request, character_id):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
+  armours_list = response.json()
+  armour_list = armours_list['lines']
+  
+  
+  helm_list = [armour for armour in armour_list if armour['itemType']=="Helmet"]
+  for armour in helm_list:
+    explicit_holder = ['<p>',]
+    for explicit in armour['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_sthelm = "\n".join(explicit_split)
+    armour['explicit_holder'] = explicit_sthelm
+  return render(request,'items/helms.html', {'helm_list': helm_list, 'character_id':character_id})
+
+def helm_equip(request, character_id, item_id):
+  
+  item = Item.objects.create(
+    name=request.POST['name'],
+    image=request.POST['image'],
+    implicit=request.POST['implicit'],
+    explicits=request.POST['explicits'],
+    item_type=request.POST['item_type'],
+    price=request.POST['price'],
+    api_id = request.POST['api_id'],
+  )
+  Character.objects.get(id=character_id).items.add(item)
+  #
+  return redirect('character', character_id=character_id)
+
+def chests(request, character_id):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
+  armours_list = response.json()
+  armour_list = armours_list['lines']
+  chest_list = [armour for armour in armour_list if armour['itemType']=="Body Armour"]
+  for armour in chest_list:
+    explicit_holder = ['<p>',]
+    for explicit in armour['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_stchest = "\n".join(explicit_split)
+    armour['explicit_holder'] = explicit_stchest
+  return render(request,'items/chests.html', {'chest_list': chest_list, 'character_id':character_id})
+
+def chest_equip(request, character_id, item_id):
+  
+  item = Item.objects.create(
+    name=request.POST['name'],
+    image=request.POST['image'],
+    implicit=request.POST['implicit'],
+    explicits=request.POST['explicits'],
+    item_type=request.POST['item_type'],
+    price=request.POST['price'],
+    api_id = request.POST['api_id'],
+  )
+  Character.objects.get(id=character_id).items.add(item)
+  #
+  return redirect('character', character_id=character_id)

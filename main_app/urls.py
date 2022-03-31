@@ -28,6 +28,12 @@ urlpatterns = [
     path('amulets/<int:character_id>/<int:item_id>', views.amulet_equip, name="amulet_equip"),
     path('right_weapons/<int:character_id>/', views.right_weapons, name="right_weapon_select"),
     path('right_weapons/<int:character_id>/<int:item_id>', views.right_weapon_equip, name="right_weapon_equip"),
+    path('boots/<int:character_id>/', views.boots, name="boots_select"),
+    path('boots/<int:character_id>/<int:item_id>', views.boot_equip, name="boot_equip"),
+    path('helms/<int:character_id>/', views.helms, name="helm_select"),
+    path('helms/<int:character_id>/<int:item_id>', views.helm_equip, name="helm_equip"),
+    path('chests/<int:character_id>/', views.chests, name="chest_select"),
+    path('chests/<int:character_id>/<int:item_id>', views.chest_equip, name="chest_equip"),
     
     # path('characters/<int:character_id>/assos_item/<int:item_id>/', views.assoc_item, name="assoc_item"),
     # path('characters/<int:character_id>/unassos_item/<int:item_id>/', views.unassoc_item, name="unassoc_item"),

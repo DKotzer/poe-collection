@@ -1,0 +1,109 @@
+{% extends "base.html"%} {% block content %}
+<h1>Body Armour List</h1>
+<div class="list">
+  {% for armour in chest_list %}
+  <div class="card">
+    <div class="card-content armour-card">
+      <div class="card-title center">{{armour.name}}</div>
+      <div class="image-holder">
+        <img class="img" title="{{armour.name}}" src="{{armour.icon}}" />
+      </div>
+      {% if armour.exaltedValue >= 1%}
+      <p>
+        <span class="bold">Value:</span> {{armour.exaltedValue}}<img
+          src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToRare.png"
+          class="chaos-icon"
+        />
+      </p>
+      {% else %}
+      <p>
+        <span class="bold">Value:</span> {{armour.chaosValue}}<img
+          src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png"
+          class="chaos-icon"
+        />
+      </p>
+      {%endif%} {% if armour.links %}
+      <p><span class="bold">Links:</span> {{armour.links}}</p>
+      {% else %}
+      <p><span class="bold">Links:</span> 1</p>
+      {% endif %} {% if armour.implicitModifiers.0.text %}
+      <p>
+        <span class="bold">Implicit:</span> {{armour.implicitModifiers.0.text}}
+      </p>
+      {% endif %}
+      <p>
+        <span class="bold">Explicits:</span>
+        {{armour.explicit_holder|safe}}
+      </p>
+      {% if '<<HBGAa>>' in armour.flavourText %}
+      <p><span class="bold">Details:</span> Mysteryous Runes</p>
+      {% elif armour.flavourText %}
+      <p><span class="bold">Details:</span> {{armour.flavourText}}</p>
+      {% endif %}
+      <div class="invisibleForm">
+      <form class="hiddenForm" action="{% url 'chest_equip' character_id armour.id %}" method="post" id="armourForm">
+          {% comment %} <input class="hidden" type="text" name="symbol" value="<%=symbol%>" /> {% endcomment %}
+          {% csrf_token %}
+          <input
+            class="hidden"
+            type="text"
+            name="name"
+            value="{{armour.name}}"
+          />
+          <input
+            class="hidden"
+            type="number"
+            name="price"
+            value="{{armour.chaosValue}}"
+          />
+          <input
+            class="hidden"
+            type="number"
+            name="api_id"
+            value="{{armour.id}}"
+          />
+          <input
+            class="hidden"
+            type="text"
+            name="image"
+            value="{{armour.icon}}"
+          />
+          <input
+            class="hidden"
+            type="text"
+            name="implicit"
+            value="{{armour.implicitModifiers.0.text}}"
+          />
+
+          <input
+            class="hidden"
+            type="text"
+            name="explicits"
+            value="{{armour.explicit_holder}}"
+          />
+          
+          <input
+            class="hidden"
+            type="text"
+            name="item_type"
+            value="{{armour.itemType}}"
+          />
+          
+
+          <div>
+            <button
+              class=""
+              type="submit"
+            >
+              Equip
+            </button>
+          </div>
+        </form>
+    </div>
+    </div>
+       
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock %}

@@ -9,19 +9,27 @@
 
     <div class="character-inventory">
       <div class="left-side">
-        <a href="{% url 'right_weapon_select' character.id %}">
-          <img src="{{character.right_hand}}" alt="" />
-        </a>
+        <div class="left-weapon">
+          <a href="{% url 'right_weapon_select' character.id %}">
+            <img src="{{character.right_hand}}" alt="" />
+          </a>
+        </div>
         <div class="boots">
-          <img src="{{character.boots}}" alt="" />
+          <a href="{% url 'boots_select' character.id %}">
+            <img src="{{character.boots}}" alt="" />
+          </a>
         </div>
       </div>
       <div class="middle-side">
         <div class="helm">
-          <img src="{{character.helm}}" alt="" />
+          <a href="{% url 'helm_select' character.id %}">
+            <img src="{{character.helm}}" alt="" />
+          </a>
         </div>
         <div class="body-armour">
-          <img src="{{character.chest}}" alt="" />
+          <a href="{% url 'chest_select' character.id %}">
+            <img src="{{character.chest}}" alt="" />
+          </a>
         </div>
         <div class="belt">
           <img src="{{character.belt}}" alt="" />
