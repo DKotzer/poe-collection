@@ -266,6 +266,7 @@ nav {
   background-size: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   height: 205.5px;
   width: 107px;
@@ -278,6 +279,9 @@ nav {
   background-repeat: no-repeat;
   height: 108.5px;
   width: 107px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .gloves {
@@ -287,6 +291,9 @@ nav {
   background-repeat: no-repeat;
   height: 108.5px;
   width: 107px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .body-armour {
@@ -295,6 +302,7 @@ nav {
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding-bottom: 8px;
   height: 156.25px;
   width: 108px;
@@ -309,6 +317,7 @@ nav {
   width: 108px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .amulet {
@@ -358,9 +367,9 @@ nav {
   transform: scale(1.475);
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
 
 .form-area {
   background-color: grey;

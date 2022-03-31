@@ -6,12 +6,15 @@ from .models import Character, Item
 from main_app.books import books_list
 from main_app.classes import class_list
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .forms import ItemForm
+
+
 
 new_book_list = sorted(books_list, key=lambda k: k['year'])
 
 class CharacterCreate(CreateView):
     model = Character
-    fields = '__all__'
+    fields = ['name', 'ascendancy']
     # success_url = "/characters/" 
 
 class CharacterUpdate(UpdateView):
@@ -116,16 +119,28 @@ def inventory(request):
   
 def characters(request):
     characters = Character.objects.all()
+    
     return render(request,'items/characters.html', {'characters':characters})
   
 def character(request, character_id):
     character = Character.objects.get(id=character_id)
-    return render(request,'items/character.html', {'character':character})
+    item_form = ItemForm()
+    item_list = character.items.all()
+    return render(request,'items/character.html', {'character':character,'item_form':item_form,'item_list':item_list })
   
 # class CharacterUpdate(UpdateView):
 #   model = Character
 #   fields = ['breed','description','age']
 
+
+def add_item(request, character_id):
+    form = ItemForm(request.POST)
+    if form.is_valid():
+        new_item = form.save(commit=False)
+        new_item.character_id = character_id
+        new_item.save()
+    return redirect('character', character_id = character_id)
+  
 def weapon_equip(request):
   print("This is a string - testing below")
   print(request.POST)
@@ -135,3 +150,131 @@ def weapon_equip(request):
   # item_insert = item.save(commit=False)
   # item.save()
   return redirect('weapons')
+
+def armour_equip(request):
+  print("This is a string - testing below")
+  print(request.POST)
+  item = Item(request.POST)
+  print(f"this is the data we are looking for!!! {item}")
+  Item.objects.create(name=request.POST.get('name'),image=request.POST.get('image'),implicit=request.POST.get('implicit'),explicits=request.POST.get('explicits'),item_type=request.POST.get('item_type'),price=request.POST.get('price'),api_id=request.POST.get('api_id') )
+  # item_insert = item.save(commit=False)
+  # item.save()
+  return redirect('armour')
+
+def accessory_equip(request):
+  print("This is a string - testing below")
+  print(request.POST)
+  item = Item(request.POST)
+  print(f"this is the data we are looking for!!! {item}")
+  Item.objects.create(name=request.POST.get('name'),image=request.POST.get('image'),implicit=request.POST.get('implicit'),explicits=request.POST.get('explicits'),item_type=request.POST.get('item_type'),price=request.POST.get('price'),api_id=request.POST.get('api_id') )
+  # item_insert = item.save(commit=False)
+  # item.save()
+  return redirect('accessories')
+
+
+
+
+# many to many stuff
+
+def rings(request, character_id):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
+  accessories_list = response.json()
+  accessory_list = accessories_list['lines']
+  # print(f"this is the accessory list! {ring_list}")
+  ring_list = [accessory for accessory in accessory_list if accessory['itemType']=="Ring"]
+  for accessory in ring_list:
+    explicit_holder = ['<p>',]
+    for explicit in accessory['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_string = "\n".join(explicit_split)
+    accessory['explicit_holder'] = explicit_string
+  return render(request,'items/rings.html', {'ring_list': ring_list, 'character_id':character_id})
+
+def ring_equip(request, character_id, item_id):
+  
+  item = Item.objects.create(
+    name=request.POST['name'],
+    image=request.POST['image'],
+    implicit=request.POST['implicit'],
+    explicits=request.POST['explicits'],
+    item_type=request.POST['item_type'],
+    price=request.POST['price'],
+    api_id = request.POST['api_id'],
+  )
+  Character.objects.get(id=character_id).items.add(item)
+  #
+  return redirect('character', character_id=character_id)
+
+def amulets(request, character_id):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
+  accessories_list = response.json()
+  accessory_list = accessories_list['lines']
+  # print(f"this is the accessory list! {amulet_list}")
+  amulet_list = [accessory for accessory in accessory_list if accessory['itemType']=="Amulet"]
+  for accessory in amulet_list:
+    explicit_holder = ['<p>',]
+    for explicit in accessory['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_stamulet = "\n".join(explicit_split)
+    accessory['explicit_holder'] = explicit_stamulet
+  return render(request,'items/amulets.html', {'amulet_list': amulet_list, 'character_id':character_id})
+
+def amulet_equip(request, character_id, item_id):
+  
+  item = Item.objects.create(
+    name=request.POST['name'],
+    image=request.POST['image'],
+    implicit=request.POST['implicit'],
+    explicits=request.POST['explicits'],
+    item_type=request.POST['item_type'],
+    price=request.POST['price'],
+    api_id = request.POST['api_id'],
+  )
+  Character.objects.get(id=character_id).items.add(item)
+  return redirect('character', character_id=character_id)
+
+def right_weapons(request, character_id):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueWeapon')
+  weapons_list = response.json()
+  weapon_list = weapons_list['lines']
+  # print(f"this is the accessory list! {right_weapon_list}")
+  right_weapon_list = [weapon for weapon in weapon_list if weapon['flavourText']!=""]
+  for accessory in right_weapon_list:
+    explicit_holder = ['<p>',]
+    for explicit in accessory['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_stright_weapon = "\n".join(explicit_split)
+    accessory['explicit_holder'] = explicit_stright_weapon
+  return render(request,'items/right_weapons.html', {'right_weapon_list': right_weapon_list, 'character_id':character_id})
+
+def right_weapon_equip(request, character_id, item_id):
+  
+  item = Item.objects.create(
+    name=request.POST['name'],
+    image=request.POST['image'],
+    implicit=request.POST['implicit'],
+    explicits=request.POST['explicits'],
+    item_type=request.POST['item_type'],
+    price=request.POST['price'],
+    api_id = request.POST['api_id'],
+  )
+  Character.objects.get(id=character_id).items.add(item)
+  return redirect('character', character_id=character_id)

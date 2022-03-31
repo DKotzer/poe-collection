@@ -9,9 +9,9 @@
 
     <div class="character-inventory">
       <div class="left-side">
-        <div class="left-weapon">
+        <a href="{% url 'right_weapon_select' character.id %}">
           <img src="{{character.right_hand}}" alt="" />
-        </div>
+        </a>
         <div class="boots">
           <img src="{{character.boots}}" alt="" />
         </div>
@@ -38,14 +38,20 @@
     </div>
     <div class="character-accessories">
       <div class="amulet">
-        <img src="{{character.amulet}}" alt="" />
+        <a href="{% url 'amulet_select' character.id %}">
+          <img src="{{character.amulet}}" alt="" />
+        </a>
       </div>
 
       <div class="leftring">
-        <img src="{{character.ring1}}" alt="" />
+        <a href="{% url 'ring_select' character.id %}"
+          ><img src="{{character.ring1}}" alt=""
+        /></a>
       </div>
       <div class="rightring">
-        <img src="{{character.ring2}}" alt="" />
+        <a href="{% url 'ring_select' character.id %}"
+          ><img src="{{character.ring2}}" alt=""
+        /></a>
       </div>
     </div>
   </div>
@@ -54,4 +60,45 @@
     <a href="{% url 'character_delete' character.id %}">Delete</a>
   </div>
 </div>
+<div>
+  <h3>Items</h3>
+  <table class="striped highlight">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>image</th>
+        <th>Price</th>
+        <th>Implicit</th>
+        <th>Explicits</th>
+        <th>Type</th>
+        <th>ID</th>
+        {% comment %}
+        <th>Character</th>
+        {% endcomment %}
+      </tr>
+    </thead>
+    <tbody>
+      {%for item in item_list%}
+      <tr>
+        <td>{{item.name}}</td>
+        <td>{{item.image}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.implicit}}</td>
+        <td>{{item.explicits|safe}}</td>
+        <td>{{item.item_type}}</td>
+        <td>{{item.api_id}}</td>
+        {% comment %}
+        <td>{{character.name}}</td>
+        {% endcomment %}
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+<form action="{% url 'add_item' character.id %}" method="post">
+  {%csrf_token%}
+  <div class="hidden">{{ item_form.as_p}}</div>
+  <input type="submit" class="btn" value"Add Item"/>
+</form>
+
 {% endblock %}

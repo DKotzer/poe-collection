@@ -51,5 +51,23 @@
       </div>
     </div>
   </div>
+  <div>
+    <h3>Items</h3>
+    <table class="striped highlight">
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for item in character.item_set.all%}
+        <tr>
+          <td>{{item.name}}</td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
 </div>
+
 {%endfor%} {% endblock %}
