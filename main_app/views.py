@@ -7,7 +7,7 @@ from main_app.books import books_list
 from main_app.classes import class_list
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import ItemForm
-
+from django.forms import Select
 
 
 new_book_list = sorted(books_list, key=lambda k: k['year'])
@@ -15,7 +15,18 @@ new_book_list = sorted(books_list, key=lambda k: k['year'])
 class CharacterCreate(CreateView):
     model = Character
     fields = ['name', 'ascendancy']
-    # success_url = "/characters/" 
+    widgets = {
+      'ascendancy': Select(attrs={'style': 'width: 400px;'})
+    }
+    success_url = "/characters/" 
+
+# class CharacterForm(CreateView):
+#     model = Character
+#     fields = ['name', 'ascendancy']
+#     widgets = {
+#       'ascendancy': Select(attrs={'style': 'width: 400px;'})
+#     }
+
 
 class CharacterUpdate(UpdateView):
     model = Character
@@ -208,6 +219,9 @@ def ring_equip(request, character_id, item_id):
     api_id = request.POST['api_id'],
   )
   Character.objects.get(id=character_id).items.add(item)
+  char = Character.objects.get(pk=character_id)
+  char.ring2 = image=request.POST['image']
+  char.save() 
   #
   return redirect('character', character_id=character_id)
 
@@ -244,6 +258,9 @@ def left_ring_equip(request, character_id, item_id):
     api_id = request.POST['api_id'],
   )
   Character.objects.get(id=character_id).items.add(item)
+  char = Character.objects.get(pk=character_id)
+  char.ring1 = image=request.POST['image']
+  char.save() 
   #
   return redirect('character', character_id=character_id)
 
@@ -265,6 +282,7 @@ def amulets(request, character_id):
     explicit_split = explicit_holder[0:]
     explicit_stamulet = "\n".join(explicit_split)
     accessory['explicit_holder'] = explicit_stamulet
+  
   return render(request,'items/amulets.html', {'amulet_list': amulet_list, 'character_id':character_id})
 
 def amulet_equip(request, character_id, item_id):
@@ -278,8 +296,12 @@ def amulet_equip(request, character_id, item_id):
     price=request.POST['price'],
     api_id = request.POST['api_id'],
   )
-  Character.objects.get(id=character_id).items.add(item)
+  Character.objects.get(pk=character_id).items.add(item)
+  char = Character.objects.get(pk=character_id)
+  char.amulet = image=request.POST['image']
+  char.save() 
   return redirect('character', character_id=character_id)
+  
 
 def right_weapons(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueWeapon')
@@ -313,6 +335,9 @@ def right_weapon_equip(request, character_id, item_id):
     api_id = request.POST['api_id'],
   )
   Character.objects.get(id=character_id).items.add(item)
+  char = Character.objects.get(pk=character_id)
+  char.right_hand = image=request.POST['image']
+  char.save() 
   return redirect('character', character_id=character_id)
 
 
@@ -350,6 +375,9 @@ def boot_equip(request, character_id, item_id):
     api_id = request.POST['api_id'],
   )
   Character.objects.get(id=character_id).items.add(item)
+  char = Character.objects.get(pk=character_id)
+  char.boots = image=request.POST['image']
+  char.save() 
   #
   return redirect('character', character_id=character_id)
 
@@ -386,6 +414,9 @@ def helm_equip(request, character_id, item_id):
     api_id = request.POST['api_id'],
   )
   Character.objects.get(id=character_id).items.add(item)
+  char = Character.objects.get(pk=character_id)
+  char.helm = image=request.POST['image']
+  char.save() 
   #
   return redirect('character', character_id=character_id)
 
@@ -420,6 +451,9 @@ def chest_equip(request, character_id, item_id):
     api_id = request.POST['api_id'],
   )
   Character.objects.get(id=character_id).items.add(item)
+  char = Character.objects.get(pk=character_id)
+  char.chest = image=request.POST['image']
+  char.save() 
   #
   return redirect('character', character_id=character_id)
 
@@ -440,6 +474,8 @@ def gloves(request, character_id):
     explicit_split = explicit_holder[0:]
     explicit_stglove = "\n".join(explicit_split)
     armour['explicit_holder'] = explicit_stglove
+    
+    
   return render(request,'items/gloves.html', {'glove_list': glove_list, 'character_id':character_id})
 
 def glove_equip(request, character_id, item_id):
@@ -454,6 +490,9 @@ def glove_equip(request, character_id, item_id):
     api_id = request.POST['api_id'],
   )
   Character.objects.get(id=character_id).items.add(item)
+  char = Character.objects.get(pk=character_id)
+  char.gloves = image=request.POST['image']
+  char.save() 
   #
   return redirect('character', character_id=character_id)
 
@@ -489,6 +528,9 @@ def left_weapon_equip(request, character_id, item_id):
     api_id = request.POST['api_id'],
   )
   Character.objects.get(id=character_id).items.add(item)
+  char = Character.objects.get(pk=character_id)
+  char.left_hand = image=request.POST['image']
+  char.save() 
   #
   return redirect('character', character_id=character_id)
 
@@ -513,6 +555,10 @@ def belts(request, character_id):
   return render(request,'items/belts.html', {'belt_list': belt_list, 'character_id':character_id})
 
 def belt_equip(request, character_id, item_id):
+  #if belt image is not default, find belt in items that matches character_id and delete it
+  char = Character.objects.get(pk=character_id)
+  if char.belt != "/static/imgs/smallplus.png":
+    Item.objects.get(id=character_id, item_type = 'Belt')
   
   item = Item.objects.create(
     name=request.POST['name'],
@@ -524,5 +570,7 @@ def belt_equip(request, character_id, item_id):
     api_id = request.POST['api_id'],
   )
   Character.objects.get(id=character_id).items.add(item)
+  char.belt = image=request.POST['image']
+  char.save() 
   #
   return redirect('character', character_id=character_id)

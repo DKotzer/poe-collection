@@ -6,10 +6,16 @@
 <div class="form-area">
   <form action="" method="post">
     {% csrf_token %}
-    <table class="striped highlight">
-      {{form.as_table}}
-    </table>
+    <div class="add_character_helper">
+      <table class="striped highlight">
+        {{form.as_table}}
+      </table>
+    </div>
     <input type="submit" value="Submit" class="btn" />
   </form>
 </div>
+<script>
+  var selectEl = document.getElementById("id_ascendancy");
+  M.FormSelect.init(ascendancyEl);
+</script>
 {% endblock %}

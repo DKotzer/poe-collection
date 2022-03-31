@@ -369,9 +369,9 @@ nav {
   transform: scale(1.475);
 }
 
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 
 .form-area {
   background-color: grey;
@@ -380,6 +380,15 @@ nav {
 
 .form-area label {
   color: black;
+}
+
+.character-items {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+}
+
+.explicits-row {
+  font-size: 12px;
 }
 
 @media only screen and (max-width: 1470px) {

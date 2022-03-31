@@ -40,66 +40,8 @@
       {% elif armour.flavourText %}
       <p><span class="bold">Details:</span> {{armour.flavourText}}</p>
       {% endif %}
-      <div class="invisibleForm">
-      <form class="hiddenForm" action="/armour_equip/" method="post" id="armourForm">
-          {% comment %} <input class="hidden" type="text" name="symbol" value="<%=symbol%>" /> {% endcomment %}
-          {% csrf_token %}
-          <input
-            class="hidden"
-            type="text"
-            name="name"
-            value="{{armour.name}}"
-          />
-          <input
-            class="hidden"
-            type="number"
-            name="price"
-            value="{{armour.chaosValue}}"
-          />
-          <input
-            class="hidden"
-            type="number"
-            name="api_id"
-            value="{{armour.id}}"
-          />
-          <input
-            class="hidden"
-            type="text"
-            name="image"
-            value="{{armour.icon}}"
-          />
-          <input
-            class="hidden"
-            type="text"
-            name="implicit"
-            value="{{armour.implicitModifiers.0.text}}"
-          />
-
-          <input
-            class="hidden"
-            type="text"
-            name="explicits"
-            value="{{armour.explicit_holder}}"
-          />
-          
-          <input
-            class="hidden"
-            type="text"
-            name="item_type"
-            value="{{armour.itemType}}"
-          />
-          
-
-          <div>
-            <button
-              class=""
-              type="submit"
-            >
-              Equip
-            </button>
-          </div>
-        </form>
-    </div>
+      
+    
     </div>
        
   </div>

@@ -3,6 +3,29 @@ from django.db import models
 from django.urls import reverse
 
 # Create your models here.
+
+ASCENDS= (
+    ('https://poe.ninja/images/classes/Slayer_avatar.png','Slayer'),
+    ('https://poe.ninja/images/classes/Gladiator_avatar.png','Gladiator'),
+    ('https://poe.ninja/images/classes/Champion_avatar.png', 'Champion'),
+    ('https://poe.ninja/images/classes/Assassin _avatar.png', 'Assassin '),
+    ('https://poe.ninja/images/classes/Saboteur _avatar.png', 'Saboteur '),
+    ('https://poe.ninja/images/classes/Trickster_avatar.png', 'Trickster'),
+    ('https://poe.ninja/images/classes/Juggernaut _avatar.png', 'Juggernaut '),
+    ('https://poe.ninja/images/classes/Berserker _avatar.png', 'Berserker '),
+    ('https://poe.ninja/images/classes/Chieftain _avatar.png', 'Chieftain '),
+    ('https://poe.ninja/images/classes/Necromancer _avatar.png', 'Necromancer '),
+    ('https://poe.ninja/images/classes/Elementalist _avatar.png', 'Elementalist '),
+    ('https://poe.ninja/images/classes/Occultist _avatar.png', 'Occultist '),
+    ('https://poe.ninja/images/classes/Deadeye_avatar.png', 'Deadeye'),
+    ('https://poe.ninja/images/classes/Raider_avatar.png', 'Raider'),
+    ('https://poe.ninja/images/classes/Pathfinder_avatar.png', 'Pathfinder'),
+    ('https://poe.ninja/images/classes/Inquisitor_avatar.png', 'Inquisitor'),
+    ('https://poe.ninja/images/classes/Hierophant_avatar.png', 'Hierophant'),
+    ('https://poe.ninja/images/classes/Guardian_avatar.png', 'Guardian'),
+    ('https://poe.ninja/images/classes/Ascendant_avatar.png', 'Ascendant'),
+)
+
      
 class Item(models.Model):
     name = models.CharField(max_length=255)
@@ -12,7 +35,7 @@ class Item(models.Model):
     item_type = models.CharField(max_length=100)
     price = models.FloatField()
     api_id = models.IntegerField(default=1)
-    # item_slot = models.CharField(max_length=100, default=None, blank=True, null=True)
+    item_slot = models.CharField(max_length=1000, default=None, blank=True, null=True)
     # character = models.ForeignKey(Character, on_delete=models.CASCADE, default=1)
     #change the on_delete after switching to many to many
     def __str__(self):
@@ -24,7 +47,7 @@ class Item(models.Model):
 
 class Character(models.Model):
     name = models.CharField(max_length=255)
-    ascendancy = models.CharField(max_length=255, default=None, blank=True)
+    ascendancy = models.CharField(max_length=100, choices=ASCENDS, default='Slayer')
     right_hand = models.CharField(max_length=255, default="/static/imgs/plus.png", blank=True)
     left_hand = models.CharField(max_length=255, default="/static/imgs/plus.png", blank=True)
     helm = models.CharField(max_length=255, default="/static/imgs/plus.png", blank=True)

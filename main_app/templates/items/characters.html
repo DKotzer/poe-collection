@@ -1,5 +1,7 @@
 {% extends "base.html"%} {% block content %}
-<a href="{% url 'character_create' %}">New Character</a>
+<a href="{% url 'character_create' %}" class="btn center"
+  >Create New Character</a
+>
 {% for character in characters%}
 
 <div class="inventory-container">
@@ -12,42 +14,62 @@
     <div class="character-inventory">
       <div class="left-side">
         <div class="left-weapon">
-          <img src="{{character.right_hand}}" alt="" />
+          <a href="{% url 'right_weapon_select' character.id %}">
+            <img src="{{character.right_hand}}" alt="" />
+          </a>
         </div>
         <div class="boots">
-          <img src="{{character.boots}}" alt="" />
+          <a href="{% url 'boots_select' character.id %}">
+            <img src="{{character.boots}}" alt="" />
+          </a>
         </div>
       </div>
       <div class="middle-side">
         <div class="helm">
-          <img src="{{character.helm}}" alt="" />
+          <a href="{% url 'helm_select' character.id %}">
+            <img src="{{character.helm}}" alt="" />
+          </a>
         </div>
         <div class="body-armour">
-          <img src="{{character.chest}}" alt="" />
+          <a href="{% url 'chest_select' character.id %}">
+            <img src="{{character.chest}}" alt="" />
+          </a>
         </div>
         <div class="belt">
-          <img src="{{character.belt}}" alt="" />
+          <a href="{% url 'belt_select' character.id %}">
+            <img src="{{character.belt}}" alt="" />
+          </a>
         </div>
       </div>
       <div class="right-side">
         <div class="right-weapon">
-          <img src="{{character.left_hand}}" alt="" />
+          <a href="{% url 'left_weapon_select' character.id %}">
+            <img src="{{character.left_hand}}" alt="" />
+          </a>
         </div>
         <div class="gloves">
-          <img src="{{character.gloves}}" alt="" />
+          <a href="{% url 'glove_select' character.id %}">
+            <img src="{{character.gloves}}" alt="" />
+          </a>
         </div>
       </div>
     </div>
     <div class="character-accessories">
       <div class="amulet">
-        <img src="{{character.amulet}}" alt="" />
+        <a href="{% url 'amulet_select' character.id %}">
+          <img src="{{character.amulet}}" alt="" />
+        </a>
       </div>
 
       <div class="leftring">
-        <img src="{{character.ring1}}" alt="" />
+        <a href="{% url 'left_ring_select' character.id %}"
+          ><img src="{{character.ring1}}" alt=""
+        /></a>
       </div>
       <div class="rightring">
-        <img src="{{character.ring2}}" alt="" />
+        <a href="{% url 'ring_select' character.id %}"
+          ><img src="{{character.ring2}}" alt=""
+        /></a>
       </div>
     </div>
   </div>
