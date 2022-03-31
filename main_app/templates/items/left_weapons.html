@@ -1,101 +1,98 @@
 {% extends "base.html"%} {% block content %}
-<h1>Weapons List</h1>
+<h1>Shields and Quivers List</h1>
 <div class="list">
-  {% for weapon in right_weapon_list %}
+  {% for armour in left_weapon_list %}
   <div class="card">
-    <div class="card-content weapon-card">
-      <div class="card-title center">{{weapon.name}}</div>
+    <div class="card-content armour-card">
+      <div class="card-title center">{{armour.name}}</div>
       <div class="image-holder">
-        <img class="img" title="{{weapon.name}}" src="{{weapon.icon}}" />
+        <img class="img" title="{{armour.name}}" src="{{armour.icon}}" />
       </div>
-      {% if weapon.exaltedValue >= 1%}
+      {% if armour.exaltedValue >= 1%}
       <p>
-        <span class="bold">Value:</span> {{weapon.exaltedValue}}<img
+        <span class="bold">Value:</span> {{armour.exaltedValue}}<img
           src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToRare.png"
           class="chaos-icon"
         />
       </p>
       {% else %}
       <p>
-        <span class="bold">Value:</span> {{weapon.chaosValue}}
-        <img
+        <span class="bold">Value:</span> {{armour.chaosValue}}<img
           src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png"
           class="chaos-icon"
         />
       </p>
-      {%endif%}
-      {% if weapon.links %}
-      <p><span class="bold">Links:</span> {{weapon.links}}</p>
+      {%endif%} {% if armour.links %}
+      <p><span class="bold">Links:</span> {{armour.links}}</p>
       {% else %}
       <p><span class="bold">Links:</span> 1</p>
-      {% endif %} {% if weapon.implicitModifiers.0.text %}
+      {% endif %} {% if armour.implicitModifiers.0.text %}
       <p>
-        <span class="bold">Implicit:</span> {{weapon.implicitModifiers.0.text}}
+        <span class="bold">Implicit:</span> {{armour.implicitModifiers.0.text}}
       </p>
       {% endif %}
       <p>
         <span class="bold">Explicits:</span>
-        {{weapon.explicit_holder|safe}}
+        {{armour.explicit_holder|safe}}
       </p>
-          
-      {% if '<<HBGAa>>' in weapon.flavourText %}
+      {% if '<<HBGAa>>' in armour.flavourText %}
       <p><span class="bold">Details:</span> Mysteryous Runes</p>
-      {% elif weapon.flavourText%}
-      <p><span class="bold">Details:</span> {{weapon.flavourText}}</p>
+      {% elif armour.flavourText %}
+      <p><span class="bold">Details:</span> {{armour.flavourText}}</p>
       {% endif %}
       <div class="invisibleForm">
-      <form class="hiddenForm" action="{% url 'right_weapon_equip' character_id weapon.id %}" method="post" id="weaponForm">
+      <form class="hiddenForm" action="{% url 'left_weapon_equip' character_id armour.id %}" method="post" id="armourForm">
           {% comment %} <input class="hidden" type="text" name="symbol" value="<%=symbol%>" /> {% endcomment %}
           {% csrf_token %}
           <input
             class="hidden"
             type="text"
             name="name"
-            value="{{weapon.name}}"
+            value="{{armour.name}}"
           />
           <input
             class="hidden"
             type="number"
             name="price"
-            value="{{weapon.chaosValue}}"
+            value="{{armour.chaosValue}}"
           />
           <input
             class="hidden"
             type="number"
             name="api_id"
-            value="{{weapon.id}}"
+            value="{{armour.id}}"
           />
           <input
             class="hidden"
             type="text"
             name="image"
-            value="{{weapon.icon}}"
+            value="{{armour.icon}}"
           />
           <input
             class="hidden"
             type="text"
             name="implicit"
-            value="{{weapon.implicitModifiers.0.text}}"
+            value="{{armour.implicitModifiers.0.text}}"
           />
 
           <input
             class="hidden"
             type="text"
             name="explicits"
-            value="{{weapon.explicit_holder}}"
+            value="{{armour.explicit_holder}}"
           />
           
           <input
             class="hidden"
             type="text"
             name="item_type"
-            value="{{weapon.itemType}}"
+            value="{{armour.itemType}}"
           />
           {% comment %} <input
             class="hidden"
             type="text"
             name="item_slot"
-            value="right_hand"
+            value="left_hand"
           /> {% endcomment %}
           
 
@@ -110,10 +107,9 @@
         </form>
     </div>
     </div>
-    
+       
   </div>
 
   {% endfor %}
 </div>
 {% endblock %}
-<p>

@@ -12,6 +12,7 @@ class Item(models.Model):
     item_type = models.CharField(max_length=100)
     price = models.FloatField()
     api_id = models.IntegerField(default=1)
+    # item_slot = models.CharField(max_length=100, default=None, blank=True, null=True)
     # character = models.ForeignKey(Character, on_delete=models.CASCADE, default=1)
     #change the on_delete after switching to many to many
     def __str__(self):

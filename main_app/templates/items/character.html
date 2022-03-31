@@ -32,15 +32,21 @@
           </a>
         </div>
         <div class="belt">
-          <img src="{{character.belt}}" alt="" />
+          <a href="{% url 'belt_select' character.id %}">
+            <img src="{{character.belt}}" alt="" />
+          </a>
         </div>
       </div>
       <div class="right-side">
         <div class="right-weapon">
-          <img src="{{character.left_hand}}" alt="" />
+          <a href="{% url 'left_weapon_select' character.id %}">
+            <img src="{{character.left_hand}}" alt="" />
+          </a>
         </div>
         <div class="gloves">
-          <img src="{{character.gloves}}" alt="" />
+          <a href="{% url 'glove_select' character.id %}">
+            <img src="{{character.gloves}}" alt="" />
+          </a>
         </div>
       </div>
     </div>
@@ -52,7 +58,7 @@
       </div>
 
       <div class="leftring">
-        <a href="{% url 'ring_select' character.id %}"
+        <a href="{% url 'left_ring_select' character.id %}"
           ><img src="{{character.ring1}}" alt=""
         /></a>
       </div>

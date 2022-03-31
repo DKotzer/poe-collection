@@ -1,7 +1,7 @@
 {% extends "base.html"%} {% block content %}
-<h1>Rings</h1>
+<h1>Belts</h1>
 <div class="list">
-  {% for accessory in ring_list  %}
+  {% for accessory in belt_list  %}
   <div class="card">
     <div class="card-content weapon-card">
       <div class="card-title center">{{accessory.name}}</div>
@@ -38,7 +38,7 @@
       <p><span class="bold">Details:</span> {{accessory.flavourText}}</p>
       {% endif %}
       <div class="invisibleForm">
-        <form class="hiddenForm" action="{% url 'ring_equip' character_id accessory.id %}" method="post" id="accessoryForm">
+        <form class="hiddenForm" action="{% url 'belt_equip' character_id accessory.id %}" method="post" id="accessoryForm">
             {% comment %} <input class="hidden" type="text" name="symbol" value="<%=symbol%>" /> {% endcomment %}
             {% csrf_token %}
             <input
@@ -85,13 +85,6 @@
               name="item_type"
               value="{{accessory.itemType}}"
             />
-
-            {% comment %} <input
-            class="hidden"
-            type="text"
-            name="item_slot"
-            value="right_ring"
-          /> {% endcomment %}
             
 
             <div>

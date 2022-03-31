@@ -259,6 +259,7 @@ nav {
   width: 107px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .right-weapon {
@@ -334,6 +335,7 @@ nav {
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding-bottom: 4px;
   height: 108.5px;
   width: 108px;

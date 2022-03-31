@@ -24,6 +24,8 @@ urlpatterns = [
     
     path('rings/<int:character_id>/', views.rings, name="ring_select"),
     path('rings/<int:character_id>/<int:item_id>', views.ring_equip, name="ring_equip"),
+    path('left_rings/<int:character_id>/', views.left_rings, name="left_ring_select"),
+    path('left_rings/<int:character_id>/<int:item_id>', views.left_ring_equip, name="left_ring_equip"),
     path('amulets/<int:character_id>/', views.amulets, name="amulet_select"),
     path('amulets/<int:character_id>/<int:item_id>', views.amulet_equip, name="amulet_equip"),
     path('right_weapons/<int:character_id>/', views.right_weapons, name="right_weapon_select"),
@@ -34,6 +36,13 @@ urlpatterns = [
     path('helms/<int:character_id>/<int:item_id>', views.helm_equip, name="helm_equip"),
     path('chests/<int:character_id>/', views.chests, name="chest_select"),
     path('chests/<int:character_id>/<int:item_id>', views.chest_equip, name="chest_equip"),
+    path('gloves/<int:character_id>/', views.gloves, name="glove_select"),
+    path('gloves/<int:character_id>/<int:item_id>', views.glove_equip, name="glove_equip"),
+    path('left_weapons/<int:character_id>/', views.left_weapons, name="left_weapon_select"),
+    path('left_weapons/<int:character_id>/<int:item_id>', views.left_weapon_equip, name="left_weapon_equip"),
+    path('belts/<int:character_id>/', views.belts, name="belt_select"),
+    path('belts/<int:character_id>/<int:item_id>', views.belt_equip, name="belt_equip"),
+    
     
     # path('characters/<int:character_id>/assos_item/<int:item_id>/', views.assoc_item, name="assoc_item"),
     # path('characters/<int:character_id>/unassos_item/<int:item_id>/', views.unassoc_item, name="unassoc_item"),

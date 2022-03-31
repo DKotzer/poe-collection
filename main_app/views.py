@@ -211,6 +211,42 @@ def ring_equip(request, character_id, item_id):
   #
   return redirect('character', character_id=character_id)
 
+
+def left_rings(request, character_id):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
+  accessories_list = response.json()
+  accessory_list = accessories_list['lines']
+  # print(f"this is the accessory list! {left_ring_list}")
+  left_ring_list = [accessory for accessory in accessory_list if accessory['itemType']=="Ring"]
+  for accessory in left_ring_list:
+    explicit_holder = ['<p>',]
+    for explicit in accessory['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_stleft_ring = "\n".join(explicit_split)
+    accessory['explicit_holder'] = explicit_stleft_ring
+  return render(request,'items/left_rings.html', {'left_ring_list': left_ring_list, 'character_id':character_id})
+
+def left_ring_equip(request, character_id, item_id):
+  
+  item = Item.objects.create(
+    name=request.POST['name'],
+    image=request.POST['image'],
+    implicit=request.POST['implicit'],
+    explicits=request.POST['explicits'],
+    item_type=request.POST['item_type'],
+    price=request.POST['price'],
+    api_id = request.POST['api_id'],
+  )
+  Character.objects.get(id=character_id).items.add(item)
+  #
+  return redirect('character', character_id=character_id)
+
 def amulets(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
   accessories_list = response.json()
@@ -373,6 +409,110 @@ def chests(request, character_id):
   return render(request,'items/chests.html', {'chest_list': chest_list, 'character_id':character_id})
 
 def chest_equip(request, character_id, item_id):
+  
+  item = Item.objects.create(
+    name=request.POST['name'],
+    image=request.POST['image'],
+    implicit=request.POST['implicit'],
+    explicits=request.POST['explicits'],
+    item_type=request.POST['item_type'],
+    price=request.POST['price'],
+    api_id = request.POST['api_id'],
+  )
+  Character.objects.get(id=character_id).items.add(item)
+  #
+  return redirect('character', character_id=character_id)
+
+def gloves(request, character_id):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
+  armours_list = response.json()
+  armour_list = armours_list['lines']
+  glove_list = [armour for armour in armour_list if armour['itemType']=="Gloves"]
+  for armour in glove_list:
+    explicit_holder = ['<p>',]
+    for explicit in armour['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_stglove = "\n".join(explicit_split)
+    armour['explicit_holder'] = explicit_stglove
+  return render(request,'items/gloves.html', {'glove_list': glove_list, 'character_id':character_id})
+
+def glove_equip(request, character_id, item_id):
+  
+  item = Item.objects.create(
+    name=request.POST['name'],
+    image=request.POST['image'],
+    implicit=request.POST['implicit'],
+    explicits=request.POST['explicits'],
+    item_type=request.POST['item_type'],
+    price=request.POST['price'],
+    api_id = request.POST['api_id'],
+  )
+  Character.objects.get(id=character_id).items.add(item)
+  #
+  return redirect('character', character_id=character_id)
+
+
+def left_weapons(request, character_id):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
+  armours_list = response.json()
+  armour_list = armours_list['lines']
+  left_weapon_list = [armour for armour in armour_list if armour['itemType']=="Quiver" or armour['itemType']=="Shield"]
+  for armour in left_weapon_list:
+    explicit_holder = ['<p>',]
+    for explicit in armour['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_stleft_weapon = "\n".join(explicit_split)
+    armour['explicit_holder'] = explicit_stleft_weapon
+  return render(request,'items/left_weapons.html', {'left_weapon_list': left_weapon_list, 'character_id':character_id})
+
+def left_weapon_equip(request, character_id, item_id):
+  
+  item = Item.objects.create(
+    name=request.POST['name'],
+    image=request.POST['image'],
+    implicit=request.POST['implicit'],
+    explicits=request.POST['explicits'],
+    item_type=request.POST['item_type'],
+    price=request.POST['price'],
+    api_id = request.POST['api_id'],
+  )
+  Character.objects.get(id=character_id).items.add(item)
+  #
+  return redirect('character', character_id=character_id)
+
+def belts(request, character_id):
+  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
+  accessories_list = response.json()
+  accessory_list = accessories_list['lines']
+  # print(f"this is the accessory list! {amulet_list}")
+  belt_list = [accessory for accessory in accessory_list if accessory['itemType']=="Belt"]
+  for armour in belt_list:
+    explicit_holder = ['<p>',]
+    for explicit in armour['explicitModifiers']:
+        if explicit['optional'] == True:
+          explicit_holder.append('*')
+        explicit_holder.append(explicit['text'])
+        explicit_holder.append('<br />')
+    explicit_holder.pop()
+    explicit_holder.append('</p>')
+    explicit_split = explicit_holder[0:]
+    explicit_stbelt = "\n".join(explicit_split)
+    armour['explicit_holder'] = explicit_stbelt
+  return render(request,'items/belts.html', {'belt_list': belt_list, 'character_id':character_id})
+
+def belt_equip(request, character_id, item_id):
   
   item = Item.objects.create(
     name=request.POST['name'],
