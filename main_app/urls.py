@@ -43,6 +43,8 @@ urlpatterns = [
     path('belts/<int:character_id>/', views.belts, name="belt_select"),
     path('belts/<int:character_id>/<int:item_id>', views.belt_equip, name="belt_equip"),
     
+    path('accounts/signup',views.signup,name='signup'),
+    
     
     # path('characters/<int:character_id>/assos_item/<int:item_id>/', views.assoc_item, name="assoc_item"),
     # path('characters/<int:character_id>/unassos_item/<int:item_id>/', views.unassoc_item, name="unassoc_item"),

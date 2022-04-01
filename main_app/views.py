@@ -8,6 +8,11 @@ from main_app.classes import class_list
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import ItemForm
 from django.forms import Select
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+import os
+from django.contrib.auth.forms import UserCreationForm
 
 
 new_book_list = sorted(books_list, key=lambda k: k['year'])
@@ -19,6 +24,9 @@ class CharacterCreate(CreateView):
       'ascendancy': Select(attrs={'style': 'width: 400px;'})
     }
     success_url = "/characters/" 
+    def form_valid(self, form):
+      form.instance.user = self.request.user
+      return super().form_valid(form)
 
 # class CharacterForm(CreateView):
 #     model = Character
@@ -616,3 +624,19 @@ def belt_equip(request, character_id, item_id):
   char.save() 
   #
   return redirect('character', character_id=character_id)
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            #save user to DB
+            user = form.save()
+            #login the user
+            login(request, user)
+            return redirect('index')
+        else:
+            error_message = "Invalid Sign Up Submission - Try Again"
+    form = UserCreationForm()
+    context = {'form':form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)

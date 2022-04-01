@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -59,6 +60,7 @@ class Character(models.Model):
     ring1 = models.CharField(max_length=255, default="/static/imgs/smallplus.png", blank=True)
     ring2 = models.CharField(max_length=255, default="/static/imgs/smallplus.png", blank=True)
     items = models.ManyToManyField(Item)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def get_absolute_url(self):
         return reverse("character", kwargs={"character_id": self.id})
