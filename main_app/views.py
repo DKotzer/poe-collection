@@ -49,7 +49,7 @@ class CharacterDelete(LoginRequiredMixin, DeleteView):
 def home(request):
   characters = Character.objects.filter(user=request.user)
     
-  return render(request,'items/characters.html', {'characters':characters})
+  return render(request,'items/mycharacters.html', {'characters':characters})
   
 def classes(request):
   return render(request,'items/classes.html', {'classes': class_list})
