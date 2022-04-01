@@ -45,22 +45,13 @@
             <div class="brand-logo center">
               <ul class="right hide-on-med-and-down nowrap">
                 <li>
-                  <a href="{% url 'weapons' %}">Weapons</a>
-                </li>
-                <li>
-                  <a href="{% url 'armour' %}">Armour</a>
-                </li>
-                <li>
-                  <a href="{% url 'accessories' %}">Accessories</a>
-                </li>
-                <li>
-                  <a href="{% url 'classes' %}">Classes</a>
-                </li>
-                <li>
                   <a href="{% url 'currency' %}">Currency</a>
                 </li>
                 <li>
                   <a href="{% url 'scarabs' %}">Scarabs</a>
+                </li>
+                <li>
+                  <a href="{% url 'classes' %}">Classes</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li>
@@ -72,6 +63,16 @@
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
                 <li><h5>Hi {{user.username}}</h5></li>
                 {%else%}
+                <li>
+                  <a href="{% url 'weapons' %}">Weapons</a>
+                </li>
+                <li>
+                  <a href="{% url 'armour' %}">Armour</a>
+                </li>
+                <li>
+                  <a href="{% url 'accessories' %}">Accessories</a>
+                </li>
+
                 <li>
                   <a href="{%url 'login' %}">Log In</a>
                 </li>
