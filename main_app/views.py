@@ -23,11 +23,11 @@ class CharacterCreate(LoginRequiredMixin, CreateView):
     widgets = {
       'ascendancy': Select(attrs={'style': 'width: 400px;'})
     }
-    success_url = "/characters/" 
+    
     def form_valid(self, form):
       form.instance.user = self.request.user
       return super().form_valid(form)
-
+    # success_url = "/mycharacters/" 
 # class CharacterForm(CreateView):
 #     model = Character
 #     fields = ['name', 'ascendancy']

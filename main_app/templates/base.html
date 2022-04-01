@@ -61,7 +61,7 @@
                   <a href="{% url 'characters' %}">Characters</a>
                 </li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
-                <li><h5>Hi {{user.username}}</h5></li>
+                <li class="hello">Hi {{user.username}}</li>
                 {%else%}
                 <li>
                   <a href="{% url 'weapons' %}">Weapons</a>
