@@ -147,13 +147,16 @@ def characters(request):
 def mycharacters(request):
     characters = Character.objects.filter(user=request.user)
     
-    return render(request,'items/characters.html', {'characters':characters})
+    return render(request,'items/mycharacters.html', {'characters':characters})
 @login_required  
 def character(request, character_id):
     character = Character.objects.get(id=character_id)
     item_form = ItemForm()
     item_list = character.items.all()
-    return render(request,'items/character.html', {'character':character,'item_form':item_form,'item_list':item_list })
+    total_value = 0;
+    for item in item_list:
+      total_value += item.price
+    return render(request,'items/character.html', {'character':character,'item_form':item_form,'item_list':item_list, 'total_value':total_value})
   
 # class CharacterUpdate(UpdateView):
 #   model = Character

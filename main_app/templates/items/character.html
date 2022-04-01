@@ -100,7 +100,13 @@
       {%for item in item_list%}
       <tr>
         <td>{{item.name}}</td>
-        <td>{{item.price}}</td>
+        <td>
+          {{item.price}}
+          <img
+            src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png"
+            class="chaos-icon"
+          />
+        </td>
         <td>{{item.implicit}}</td>
         <td class="explicits-row">{{item.explicits|safe}}</td>
         <td>{{item.item_type}}</td>
@@ -110,6 +116,14 @@
         {% endcomment %}
       </tr>
       {%endfor%}
+      <div class="total_value">
+        Total Value: {{total_value}}
+        <span class="raise_me"
+          ><img
+            src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png"
+            class="chaos-icon"
+        /></span>
+      </div>
     </tbody>
   </table>
 </div>

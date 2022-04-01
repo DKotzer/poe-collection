@@ -394,6 +394,11 @@ select {
   color: black;
 }
 
+.raise_me {
+  position: relative;
+  top: -20px;
+}
+
 .character-items {
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 10px;
@@ -402,7 +407,11 @@ select {
 .explicits-row {
   font-size: 12px;
 }
+.total_value {
+  display: flex;
 
+  justify-content: center;
+}
 .nowrap {
   display: flex;
   flex-wrap: nowrap;
