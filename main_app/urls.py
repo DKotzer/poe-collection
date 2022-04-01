@@ -18,9 +18,9 @@ urlpatterns = [
     path('character/<int:pk>/update/', views.CharacterUpdate.as_view(), name="character_update"),
     path('character/<int:pk>/delete/', views.CharacterDelete.as_view(), name="character_delete"),
     path('character/<int:character_id>/add_item', views.add_item, name='add_item'),
-    path('weapon_equip/', views.weapon_equip, name="equip_weapon"),
-    path('armour_equip/', views.armour_equip, name="armour_weapon"),
-    path('accessory_equip/', views.accessory_equip, name="accessory_weapon"),
+    # path('weapon_equip/', views.weapon_equip, name="equip_weapon"),
+    # path('armour_equip/', views.armour_equip, name="armour_weapon"),
+    # path('accessory_equip/', views.accessory_equip, name="accessory_weapon"),
     
     path('rings/<int:character_id>/', views.rings, name="ring_select"),
     path('rings/<int:character_id>/<int:item_id>', views.ring_equip, name="ring_equip"),

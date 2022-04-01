@@ -68,10 +68,16 @@
         /></a>
       </div>
     </div>
-  </div>
-  <div class="card-action">
-    <a href="{% url 'character_update' character.id %}">Edit</a>
-    <a href="{% url 'character_delete' character.id %}">Delete</a>
+    <p></p>
+    <div class="card-action center">
+      <p>
+        <a class="btn hidden" href="{% url 'character_update' character.id %}"
+          >Edit</a
+        >
+      </p>
+
+      <a class="btn" href="{% url 'character_delete' character.id %}">Delete</a>
+    </div>
   </div>
 </div>
 <div class="character-items">

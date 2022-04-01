@@ -153,35 +153,35 @@ def add_item(request, character_id):
         new_item.save()
     return redirect('character', character_id = character_id)
   
-def weapon_equip(request):
-  print("This is a string - testing below")
-  print(request.POST)
-  item = Item(request.POST)
-  print(f"this is the data we are looking for!!! {item}")
-  Item.objects.create(name=request.POST.get('name'),image=request.POST.get('image'),implicit=request.POST.get('implicit'),explicits=request.POST.get('explicits'),item_type=request.POST.get('item_type'),price=request.POST.get('price'),api_id=request.POST.get('api_id') )
-  # item_insert = item.save(commit=False)
-  # item.save()
-  return redirect('weapons')
+# def weapon_equip(request):
+#   print("This is a string - testing below")
+#   print(request.POST)
+#   item = Item(request.POST)
+#   print(f"this is the data we are looking for!!! {item}")
+#   Item.objects.create(name=request.POST.get('name'),image=request.POST.get('image'),implicit=request.POST.get('implicit'),explicits=request.POST.get('explicits'),item_type=request.POST.get('item_type'),price=request.POST.get('price'),api_id=request.POST.get('api_id') )
+#   # item_insert = item.save(commit=False)
+#   # item.save()
+#   return redirect('weapons')
 
-def armour_equip(request):
-  print("This is a string - testing below")
-  print(request.POST)
-  item = Item(request.POST)
-  print(f"this is the data we are looking for!!! {item}")
-  Item.objects.create(name=request.POST.get('name'),image=request.POST.get('image'),implicit=request.POST.get('implicit'),explicits=request.POST.get('explicits'),item_type=request.POST.get('item_type'),price=request.POST.get('price'),api_id=request.POST.get('api_id') )
-  # item_insert = item.save(commit=False)
-  # item.save()
-  return redirect('armour')
+# def armour_equip(request):
+#   print("This is a string - testing below")
+#   print(request.POST)
+#   item = Item(request.POST)
+#   print(f"this is the data we are looking for!!! {item}")
+#   Item.objects.create(name=request.POST.get('name'),image=request.POST.get('image'),implicit=request.POST.get('implicit'),explicits=request.POST.get('explicits'),item_type=request.POST.get('item_type'),price=request.POST.get('price'),api_id=request.POST.get('api_id') )
+#   # item_insert = item.save(commit=False)
+#   # item.save()
+#   return redirect('armour')
 
-def accessory_equip(request):
-  print("This is a string - testing below")
-  print(request.POST)
-  item = Item(request.POST)
-  print(f"this is the data we are looking for!!! {item}")
-  Item.objects.create(name=request.POST.get('name'),image=request.POST.get('image'),implicit=request.POST.get('implicit'),explicits=request.POST.get('explicits'),item_type=request.POST.get('item_type'),price=request.POST.get('price'),api_id=request.POST.get('api_id') )
-  # item_insert = item.save(commit=False)
-  # item.save()
-  return redirect('accessories')
+# def accessory_equip(request):
+#   print("This is a string - testing below")
+#   print(request.POST)
+#   item = Item(request.POST)
+#   print(f"this is the data we are looking for!!! {item}")
+#   Item.objects.create(name=request.POST.get('name'),image=request.POST.get('image'),implicit=request.POST.get('implicit'),explicits=request.POST.get('explicits'),item_type=request.POST.get('item_type'),price=request.POST.get('price'),api_id=request.POST.get('api_id') )
+#   # item_insert = item.save(commit=False)
+#   # item.save()
+#   return redirect('accessories')
 
 
 
@@ -288,6 +288,12 @@ def amulets(request, character_id):
 
 def amulet_equip(request, character_id, item_id):
   
+  char = Character.objects.get(pk=character_id)
+  if char.amulet != "/static/imgs/smallplus.png":
+    oldamulet = Item.objects.get(character=character_id , item_type = 'Amulet')
+    
+    oldamulet.delete()
+  
   item = Item.objects.create(
     name=request.POST['name'],
     image=request.POST['image'],
@@ -327,16 +333,8 @@ def right_weapons(request, character_id):
 def right_weapon_equip(request, character_id, item_id):
   char = Character.objects.get(pk=character_id)
   if char.right_hand != "/static/imgs/plus.png":
-    print("testtesttest")
-    # weapon_select = char.filter(item_type)
-    oldleft_weapon = Item.objects.filter(character=character_id, item_type__in = ['One Handed Sword', 'Two Handed Sword', 'Staff', 'Two Handed Axe', 'One Handed Axe', 'Two Handed Mace', 'Bow', 'One Handed Mace', 'Dagger', 'Wand', 'Claw'])
-    print("old weapon", oldleft_weapon)
-    # oldleft_weapon = Item.objects.get(character=character_id , and item_type in ['One' 'Handed Sword', 'Two Handed' 'Sword', 'Staff'])
-    # oldleft_weapon = Item.objects.get(character=character_id , and item_type in ['One' 'Handed Sword', 'Two Handed' 'Sword', 'Staff'])
-    
-    # One Handed Sword, Two Handed Sword, Staff, Two Handed Axe, One Handed Axe, Two Handed Mace, Bow, One Handed Mace, Dagger, Wand, Claw
-    # print(oldleft_weapon.id)
-    oldleft_weapon.delete()
+    oldright_weapon = Item.objects.filter(character=character_id, item_type__in = ['One Handed Sword', 'Two Handed Sword', 'Staff', 'Two Handed Axe', 'One Handed Axe', 'Two Handed Mace', 'Bow', 'One Handed Mace', 'Dagger', 'Wand', 'Claw'])
+    oldright_weapon.delete()
   
   item = Item.objects.create(
     name=request.POST['name'],
@@ -378,6 +376,12 @@ def boots(request, character_id):
 
 def boot_equip(request, character_id, item_id):
   
+  char = Character.objects.get(pk=character_id)
+  if char.boots != "/static/imgs/plus.png":
+    oldboots = Item.objects.get(character=character_id , item_type = 'Boots')
+    
+    oldboots.delete()
+  
   item = Item.objects.create(
     name=request.POST['name'],
     image=request.POST['image'],
@@ -416,6 +420,11 @@ def helms(request, character_id):
   return render(request,'items/helms.html', {'helm_list': helm_list, 'character_id':character_id})
 
 def helm_equip(request, character_id, item_id):
+  char = Character.objects.get(pk=character_id)
+  if char.helm != "/static/imgs/plus.png":
+    oldhelm = Item.objects.get(character=character_id , item_type = 'Helmet')
+    
+    oldhelm.delete()
   
   item = Item.objects.create(
     name=request.POST['name'],
@@ -453,6 +462,11 @@ def chests(request, character_id):
   return render(request,'items/chests.html', {'chest_list': chest_list, 'character_id':character_id})
 
 def chest_equip(request, character_id, item_id):
+  char = Character.objects.get(pk=character_id)
+  if char.chest != "/static/imgs/plus.png":
+    oldchest = Item.objects.get(character=character_id , item_type = 'Body Armour')
+    
+    oldchest.delete()
   
   item = Item.objects.create(
     name=request.POST['name'],
@@ -536,6 +550,12 @@ def left_weapons(request, character_id):
   return render(request,'items/left_weapons.html', {'left_weapon_list': left_weapon_list, 'character_id':character_id})
 
 def left_weapon_equip(request, character_id, item_id):
+  
+    
+  char = Character.objects.get(pk=character_id)
+  if char.right_hand != "/static/imgs/plus.png":
+    oldleft_weapon = Item.objects.filter(character=character_id, item_type__in = ['Shield', 'Quiver'])
+    oldleft_weapon.delete()
   
   
   item = Item.objects.create(
