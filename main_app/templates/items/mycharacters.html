@@ -2,6 +2,7 @@
 <a href="{% url 'character_create' %}" class="btn center"
   >Create New Character</a
 >
+<h1>Your Characters</h1>
 {% for character in characters%}
 
 <div class="inventory-container">
@@ -73,7 +74,6 @@
       </div>
     </div>
   </div>
-  {% comment %}
   <div>
     <h3>Items</h3>
     <table class="striped highlight">
@@ -91,7 +91,6 @@
       </tbody>
     </table>
   </div>
-  {% endcomment %}
 </div>
 
 {%endfor%} {% endblock %}

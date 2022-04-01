@@ -13,6 +13,7 @@ urlpatterns = [
     path('inventory/', views.inventory, name="inventory"),
     path('classes/', views.classes, name='classes'),
     path('characters/', views.characters, name='characters'),
+    path('mycharacters/', views.mycharacters, name='my_characters'),
     path('character/<int:character_id>', views.character, name="character"),
     path('character/create', views.CharacterCreate.as_view(), name="character_create"),
     path('character/<int:pk>/update/', views.CharacterUpdate.as_view(), name="character_update"),

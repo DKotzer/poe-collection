@@ -17,7 +17,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 new_book_list = sorted(books_list, key=lambda k: k['year'])
 
-class CharacterCreate(CreateView):
+class CharacterCreate(LoginRequiredMixin, CreateView):
     model = Character
     fields = ['name', 'ascendancy']
     widgets = {
@@ -36,18 +36,20 @@ class CharacterCreate(CreateView):
 #     }
 
 
-class CharacterUpdate(UpdateView):
+class CharacterUpdate(LoginRequiredMixin, UpdateView):
     model = Character
     fields = '__all__'
 
-class CharacterDelete(DeleteView):
+class CharacterDelete(LoginRequiredMixin, DeleteView):
     model = Character
     success_url = "/characters/"
 
 # Create your views here.
+@login_required
 def home(request):
-  characters = Character.objects.all()
-  return render(request,'items/characters.html', {'books': new_book_list, 'characters': characters} )
+  characters = Character.objects.filter(user=request.user)
+    
+  return render(request,'items/characters.html', {'characters':characters})
   
 def classes(request):
   return render(request,'items/classes.html', {'classes': class_list})
@@ -136,12 +138,17 @@ def accessories(request):
 
 def inventory(request):
     return render(request,'items/inventory.html')
-  
+@login_required  
 def characters(request):
     characters = Character.objects.all()
     
     return render(request,'items/characters.html', {'characters':characters})
-  
+@login_required  
+def mycharacters(request):
+    characters = Character.objects.filter(user=request.user)
+    
+    return render(request,'items/characters.html', {'characters':characters})
+@login_required  
 def character(request, character_id):
     character = Character.objects.get(id=character_id)
     item_form = ItemForm()
@@ -152,7 +159,7 @@ def character(request, character_id):
 #   model = Character
 #   fields = ['breed','description','age']
 
-
+@login_required
 def add_item(request, character_id):
     form = ItemForm(request.POST)
     if form.is_valid():
@@ -195,7 +202,7 @@ def add_item(request, character_id):
 
 
 # many to many stuff
-
+@login_required
 def rings(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
   accessories_list = response.json()
@@ -215,7 +222,7 @@ def rings(request, character_id):
     explicit_string = "\n".join(explicit_split)
     accessory['explicit_holder'] = explicit_string
   return render(request,'items/rings.html', {'ring_list': ring_list, 'character_id':character_id})
-
+@login_required
 def ring_equip(request, character_id, item_id):
   
   item = Item.objects.create(
@@ -234,7 +241,7 @@ def ring_equip(request, character_id, item_id):
   #
   return redirect('character', character_id=character_id)
 
-
+@login_required
 def left_rings(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
   accessories_list = response.json()
@@ -254,7 +261,7 @@ def left_rings(request, character_id):
     explicit_stleft_ring = "\n".join(explicit_split)
     accessory['explicit_holder'] = explicit_stleft_ring
   return render(request,'items/left_rings.html', {'left_ring_list': left_ring_list, 'character_id':character_id})
-
+@login_required
 def left_ring_equip(request, character_id, item_id):
   
   item = Item.objects.create(
@@ -272,7 +279,7 @@ def left_ring_equip(request, character_id, item_id):
   char.save() 
   #
   return redirect('character', character_id=character_id)
-
+@login_required
 def amulets(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
   accessories_list = response.json()
@@ -293,7 +300,7 @@ def amulets(request, character_id):
     accessory['explicit_holder'] = explicit_stamulet
   
   return render(request,'items/amulets.html', {'amulet_list': amulet_list, 'character_id':character_id})
-
+@login_required
 def amulet_equip(request, character_id, item_id):
   
   char = Character.objects.get(pk=character_id)
@@ -317,7 +324,7 @@ def amulet_equip(request, character_id, item_id):
   char.save() 
   return redirect('character', character_id=character_id)
   
-
+@login_required
 def right_weapons(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueWeapon')
   weapons_list = response.json()
@@ -337,7 +344,7 @@ def right_weapons(request, character_id):
     explicit_stright_weapon = "\n".join(explicit_split)
     accessory['explicit_holder'] = explicit_stright_weapon
   return render(request,'items/right_weapons.html', {'right_weapon_list': right_weapon_list, 'character_id':character_id})
-
+@login_required
 def right_weapon_equip(request, character_id, item_id):
   char = Character.objects.get(pk=character_id)
   if char.right_hand != "/static/imgs/plus.png":
@@ -360,7 +367,7 @@ def right_weapon_equip(request, character_id, item_id):
   return redirect('character', character_id=character_id)
 
 
-
+@login_required
 def boots(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
   armours_list = response.json()
@@ -381,7 +388,7 @@ def boots(request, character_id):
     explicit_stboot = "\n".join(explicit_split)
     armour['explicit_holder'] = explicit_stboot
   return render(request,'items/boots.html', {'boot_list': boot_list, 'character_id':character_id})
-
+@login_required
 def boot_equip(request, character_id, item_id):
   
   char = Character.objects.get(pk=character_id)
@@ -405,7 +412,7 @@ def boot_equip(request, character_id, item_id):
   char.save() 
   #
   return redirect('character', character_id=character_id)
-
+@login_required
 def helms(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
   armours_list = response.json()
@@ -426,7 +433,7 @@ def helms(request, character_id):
     explicit_sthelm = "\n".join(explicit_split)
     armour['explicit_holder'] = explicit_sthelm
   return render(request,'items/helms.html', {'helm_list': helm_list, 'character_id':character_id})
-
+@login_required
 def helm_equip(request, character_id, item_id):
   char = Character.objects.get(pk=character_id)
   if char.helm != "/static/imgs/plus.png":
@@ -449,7 +456,7 @@ def helm_equip(request, character_id, item_id):
   char.save() 
   #
   return redirect('character', character_id=character_id)
-
+@login_required
 def chests(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
   armours_list = response.json()
@@ -468,7 +475,7 @@ def chests(request, character_id):
     explicit_stchest = "\n".join(explicit_split)
     armour['explicit_holder'] = explicit_stchest
   return render(request,'items/chests.html', {'chest_list': chest_list, 'character_id':character_id})
-
+@login_required
 def chest_equip(request, character_id, item_id):
   char = Character.objects.get(pk=character_id)
   if char.chest != "/static/imgs/plus.png":
@@ -491,7 +498,7 @@ def chest_equip(request, character_id, item_id):
   char.save() 
   #
   return redirect('character', character_id=character_id)
-
+@login_required
 def gloves(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
   armours_list = response.json()
@@ -512,7 +519,7 @@ def gloves(request, character_id):
     
     
   return render(request,'items/gloves.html', {'glove_list': glove_list, 'character_id':character_id})
-
+@login_required
 def glove_equip(request, character_id, item_id):
   
   char = Character.objects.get(pk=character_id)
@@ -537,7 +544,7 @@ def glove_equip(request, character_id, item_id):
   #
   return redirect('character', character_id=character_id)
 
-
+@login_required
 def left_weapons(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueArmour')
   armours_list = response.json()
@@ -556,7 +563,7 @@ def left_weapons(request, character_id):
     explicit_stleft_weapon = "\n".join(explicit_split)
     armour['explicit_holder'] = explicit_stleft_weapon
   return render(request,'items/left_weapons.html', {'left_weapon_list': left_weapon_list, 'character_id':character_id})
-
+@login_required
 def left_weapon_equip(request, character_id, item_id):
   
     
@@ -581,7 +588,7 @@ def left_weapon_equip(request, character_id, item_id):
   char.save() 
   #
   return redirect('character', character_id=character_id)
-
+@login_required
 def belts(request, character_id):
   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueAccessory')
   accessories_list = response.json()
@@ -601,7 +608,7 @@ def belts(request, character_id):
     explicit_stbelt = "\n".join(explicit_split)
     armour['explicit_holder'] = explicit_stbelt
   return render(request,'items/belts.html', {'belt_list': belt_list, 'character_id':character_id})
-
+@login_required
 def belt_equip(request, character_id, item_id):
   #if belt image is not default, find belt in items that matches character_id and delete it
   char = Character.objects.get(pk=character_id)
