@@ -17,8 +17,9 @@
 
 {% block javascript %}
 <script>
-  var selectEl = document.getElementById("id_ascendancy");
-  console.log(selectEl);
-  M.FormSelect.init(selectEl);
+  const skillSelect = document.getElementById("<my-select-id>");
+  // Add this line below
+  console.log("0 materialize loaded?: ", M);
+  M.FormSelect.init(skillSelect);
 </script>
 {% endblock %} {% endblock %}

@@ -156,6 +156,7 @@ def character(request, character_id):
     total_value = 0;
     for item in item_list:
       total_value += item.price
+    total_value = round(total_value, 1)
     return render(request,'items/character.html', {'character':character,'item_form':item_form,'item_list':item_list, 'total_value':total_value})
   
 # class CharacterUpdate(UpdateView):

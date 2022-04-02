@@ -1,31 +1,98 @@
 {% extends "base.html"%} {% block content %}
-<h1>Book List</h1>
+<a href="{% url 'character_create' %}" class="btn center"
+  >Create New Character</a
+>
+<h1 class="center">Your Characters</h1>
+{% for character in characters%}
 
-<div class="list">
-  {% for book in books %}
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title"> {{book.title}} </span>
-      <p>Author: {{book.author}}</p>
-      <p>Pages: {{book.pages}}</p>
-      <p>Year: {{book.year}}</p>
-      <p>Country: {{book.country}}</p>
-      <p></p>
-      <p>
-        <a href="{{book.link}}"
-          ><img class="img" src="/static/{{ book.imageLink }}" />
+<div class="inventory-container">
+  <div class="character-container">
+    <div class="above-inventory">
+      <img src="{{character.ascendancy}}" alt="" />
+      <h3><a href="{%url 'character' character.id%}">{{character.name}}</a></h3>
+    </div>
+
+    <div class="character-inventory">
+      <div class="left-side">
+        <div class="left-weapon">
+          <a href="{% url 'right_weapon_select' character.id %}">
+            <img src="{{character.right_hand}}" alt="" />
+          </a>
+        </div>
+        <div class="boots">
+          <a href="{% url 'boots_select' character.id %}">
+            <img src="{{character.boots}}" alt="" />
+          </a>
+        </div>
+      </div>
+      <div class="middle-side">
+        <div class="helm">
+          <a href="{% url 'helm_select' character.id %}">
+            <img src="{{character.helm}}" alt="" />
+          </a>
+        </div>
+        <div class="body-armour">
+          <a href="{% url 'chest_select' character.id %}">
+            <img src="{{character.chest}}" alt="" />
+          </a>
+        </div>
+        <div class="belt">
+          <a href="{% url 'belt_select' character.id %}">
+            <img src="{{character.belt}}" alt="" />
+          </a>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="right-weapon">
+          <a href="{% url 'left_weapon_select' character.id %}">
+            <img src="{{character.left_hand}}" alt="" />
+          </a>
+        </div>
+        <div class="gloves">
+          <a href="{% url 'glove_select' character.id %}">
+            <img src="{{character.gloves}}" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="character-accessories">
+      <div class="amulet">
+        <a href="{% url 'amulet_select' character.id %}">
+          <img src="{{character.amulet}}" alt="" />
         </a>
-      </p>
+      </div>
 
-      {% comment %}
-      <p>Image:<img class="img" src="{% static book.imageLink %}" /></p>
-      {% endcomment %} {% comment %}
-      <p><img src="{% static book.imageLink %}" /></p>
-      {% endcomment %} {% if book.img %}
-      <div class="center"><img class="img" src="{{book.img}}" /></div>
-      {% endif %}
+      <div class="leftring">
+        <a href="{% url 'left_ring_select' character.id %}"
+          ><img src="{{character.ring1}}" alt=""
+        /></a>
+      </div>
+      <div class="rightring">
+        <a href="{% url 'ring_select' character.id %}"
+          ><img src="{{character.ring2}}" alt=""
+        /></a>
+      </div>
     </div>
   </div>
-
-  {% endfor %} {% endblock %}
+  {% comment %}
+  <div>
+    <h3>Items</h3>
+    <table class="striped highlight">
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for item in character.item_set.all%}
+        <tr>
+          <td>{{item.name}}</td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+  {% endcomment %}
 </div>
+
+{%endfor%} {% endblock %}

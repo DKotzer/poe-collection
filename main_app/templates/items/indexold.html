@@ -1,0 +1,31 @@
+{% extends "base.html"%} {% block content %}
+<h1>Book List</h1>
+
+<div class="list">
+  {% for book in books %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title"> {{book.title}} </span>
+      <p>Author: {{book.author}}</p>
+      <p>Pages: {{book.pages}}</p>
+      <p>Year: {{book.year}}</p>
+      <p>Country: {{book.country}}</p>
+      <p></p>
+      <p>
+        <a href="{{book.link}}"
+          ><img class="img" src="/static/{{ book.imageLink }}" />
+        </a>
+      </p>
+
+      {% comment %}
+      <p>Image:<img class="img" src="{% static book.imageLink %}" /></p>
+      {% endcomment %} {% comment %}
+      <p><img src="{% static book.imageLink %}" /></p>
+      {% endcomment %} {% if book.img %}
+      <div class="center"><img class="img" src="{{book.img}}" /></div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% endfor %} {% endblock %}
+</div>
