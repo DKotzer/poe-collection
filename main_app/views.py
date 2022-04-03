@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import os
 from django.contrib.auth.forms import UserCreationForm
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 new_book_list = sorted(books_list, key=lambda k: k['year'])
 
@@ -87,7 +87,18 @@ def weapons(request):
     explicit_split = explicit_holder[0:]
     explicit_string = "\n".join(explicit_split)
     weapon['explicit_holder'] = explicit_string
-  return render(request,'items/weapons.html', {'weapon_list': weapon_list})
+    #infiniscroll test
+  
+  page = request.GET.get('page', 1)
+  paginator = Paginator(weapon_list, 20)
+  try:
+      weapons = paginator.page(page)
+  except PageNotAnInteger:
+      weapons = paginator.page(1)
+  except EmptyPage:
+      weapons = paginator.page(paginator.num_pages)
+    
+  return render(request,'items/weapons.html', {'weapon_list': weapon_list, 'weapons': weapons})
 
 # def weapons(request):
 #   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Archnemesis&type=UniqueWeapon')
