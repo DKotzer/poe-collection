@@ -90,7 +90,7 @@ def weapons(request):
     #infiniscroll test
   
   page = request.GET.get('page', 1)
-  paginator = Paginator(weapon_list, 20)
+  paginator = Paginator(weapon_list, 60)
   try:
       weapons = paginator.page(page)
   except PageNotAnInteger:
