@@ -77,11 +77,20 @@ WSGI_APPLICATION = 'poecollection.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'poecollection',
-        'USER': 'postgres',
-        'PASSWORD': '123456'
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': ''
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'poecollection',
+#         'USER': 'postgres',
+#         'PASSWORD': '123456'
+#     }
+# }
 
 
 # Password validation
@@ -126,3 +135,6 @@ LOGOUT_REDIRECT_URL = '/currency/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import django_heroku
+django_heroku.settings(locals())
