@@ -1,1 +1,1 @@
-web: gunicorn models_site.wsgi
+web: gunicorn poecollection.wsgi
