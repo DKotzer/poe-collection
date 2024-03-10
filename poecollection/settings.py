@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY'),
 DEBUG = True
 
 ALLOWED_HOSTS = ['exile.dylankotzer.com', '192.168.2.207', 'localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['exile.dylankotzer.com']
+CSRF_TRUSTED_ORIGINS = ['https://exile.dylankotzer.com']
 
 
 # Application definition
