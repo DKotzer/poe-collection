@@ -50,6 +50,21 @@ def home(request):
   characters = Character.objects.filter(user=request.user)
     
   return render(request,'items/mycharacters.html', {'characters':characters})
+
+def season(request):
+  # url = "https://api.pathofexile.com/league"
+  # headers = {
+  #     'User-Agent': 'My User Agent 1.0',
+  # }
+
+  # response = requests.get(url, headers=headers)
+  # response = requests.get('https://api.pathofexile.com/league')
+  # print(response.status_code)
+  # print(response.text)
+  # seasons = response.json()
+  
+  return 'TODO'
+
   
 def classes(request):
   return render(request,'items/classes.html', {'classes': class_list})
