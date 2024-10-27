@@ -73,7 +73,7 @@ def items(request):
     return render(request,'items/index.html', {'books': new_book_list})
 
 def currency(request):
-  response = requests.get('https://poe.ninja/api/data/p?league=Settlers&type=Currency')
+  response = requests.get('https://poe.ninja/api/data/currencyoverview?league=Settlers&type=Currency')
   currencies_list = response.json()
   currencies_list2 = currencies_list['currencyDetails'] 
   return render (request,'items/currency.html', {'currency_list': currencies_list2} )
