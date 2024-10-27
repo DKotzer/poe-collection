@@ -60,9 +60,10 @@ def season(request):
   }
 
   response = requests.get(url, headers=headers)
-  # response = requests.get('https://api.pathofexile.com/league')
-  # print(response.json())
+
   seasons = response.json()
+  
+  #8th season is the current season, may change when poe 2 comes out
   if len(seasons) > 6:
     # print(seasons[8]['id'])
     return seasons[8]['id']
