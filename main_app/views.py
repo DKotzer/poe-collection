@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.templatetags.static import static
 import requests
 from .models import Character, Item
-from main_app.books import books_list
+
 from main_app.classes import class_list
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import ItemForm
@@ -15,7 +15,7 @@ import os
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-new_book_list = sorted(books_list, key=lambda k: k['year'])
+
 
 class CharacterCreate(LoginRequiredMixin, CreateView):
     model = Character
@@ -52,28 +52,39 @@ def home(request):
   return render(request,'items/mycharacters.html', {'characters':characters})
 
 def season(request):
-  # url = "https://api.pathofexile.com/league"
-  # headers = {
-  #     'User-Agent': 'My User Agent 1.0',
-  # }
+  url = "https://api.pathofexile.com/leagues"
+  headers = {
+      'User-Agent': 'My User Agent 1.0',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+  }
 
-  # response = requests.get(url, headers=headers)
+  response = requests.get(url, headers=headers)
   # response = requests.get('https://api.pathofexile.com/league')
-  # print(response.status_code)
+  # print(response.json())
+  seasons = response.json()
+  if len(seasons) > 6:
+    # print(seasons[8]['id'])
+    return seasons[8]['id']
+  else:
+    return 'Standard'
+  #print the 8th object in the response
+  
   # print(response.text)
   # seasons = response.json()
   
-  return 'TODO'
+
+currentSeason = season('poe')
 
   
 def classes(request):
   return render(request,'items/classes.html', {'classes': class_list})
 
-def items(request):
-    return render(request,'items/index.html', {'books': new_book_list})
+
 
 def currency(request):
-  response = requests.get('https://poe.ninja/api/data/currencyoverview?league=Settlers&type=Currency')
+  url = f'https://poe.ninja/api/data/currencyoverview?league={currentSeason}&type=Currency'
+  response = requests.get(url)
   currencies_list = response.json()
   currencies_list2 = currencies_list['currencyDetails'] 
   return render (request,'items/currency.html', {'currency_list': currencies_list2} )
@@ -81,13 +92,13 @@ def currency(request):
 #     return render(request,'items/currency.html', {'currency_list': currencyDetails})
   
 def scarabs(request):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=Scarab')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=Scarab')
   scarabs_list = response.json()
   scarab_list = scarabs_list['lines']
   return render(request,'items/scarabs.html', {'scarab_list': scarab_list})
   
 def weapons(request):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueWeapon')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueWeapon')
   weapons_list = response.json()
   weapon_list = weapons_list['lines']
   for weapon in weapon_list:
@@ -116,7 +127,7 @@ def weapons(request):
   return render(request,'items/weapons.html', {'weapon_list': weapon_list, 'weapons': weapons})
 
 # def weapons(request):
-#   response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueWeapon')
+#   response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueWeapon')
 #   weapons_list = response.json()
 #   weapon_list = weapons_list['lines']
 #   for weapon in weapon_list:
@@ -127,7 +138,7 @@ def weapons(request):
 #     print(explicit_holder)
 
 def armour(request):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueArmour')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueArmour')
   armours_list = response.json()
   armour_list = armours_list['lines']
   for armour in armour_list:
@@ -145,7 +156,7 @@ def armour(request):
   return render(request,'items/armour.html', {'armour_list': armour_list})
 
 def accessories(request):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueAccessory')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueAccessory')
   accessories_list = response.json()
   accessory_list = accessories_list['lines']
   for accessory in accessory_list:
@@ -234,7 +245,7 @@ def add_item(request, character_id):
 # many to many stuff
 @login_required
 def rings(request, character_id):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueAccessory')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueAccessory')
   accessories_list = response.json()
   accessory_list = accessories_list['lines']
   # print(f"this is the accessory list! {ring_list}")
@@ -273,7 +284,7 @@ def ring_equip(request, character_id, item_id):
 
 @login_required
 def left_rings(request, character_id):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueAccessory')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueAccessory')
   accessories_list = response.json()
   accessory_list = accessories_list['lines']
   # print(f"this is the accessory list! {left_ring_list}")
@@ -311,7 +322,7 @@ def left_ring_equip(request, character_id, item_id):
   return redirect('character', character_id=character_id)
 @login_required
 def amulets(request, character_id):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueAccessory')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueAccessory')
   accessories_list = response.json()
   accessory_list = accessories_list['lines']
   # print(f"this is the accessory list! {amulet_list}")
@@ -356,7 +367,7 @@ def amulet_equip(request, character_id, item_id):
   
 @login_required
 def right_weapons(request, character_id):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueWeapon')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueWeapon')
   weapons_list = response.json()
   weapon_list = weapons_list['lines']
   # print(f"this is the accessory list! {right_weapon_list}")
@@ -399,7 +410,7 @@ def right_weapon_equip(request, character_id, item_id):
 
 @login_required
 def boots(request, character_id):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueArmour')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueArmour')
   armours_list = response.json()
   armour_list = armours_list['lines']
   
@@ -444,7 +455,7 @@ def boot_equip(request, character_id, item_id):
   return redirect('character', character_id=character_id)
 @login_required
 def helms(request, character_id):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueArmour')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueArmour')
   armours_list = response.json()
   armour_list = armours_list['lines']
   
@@ -488,7 +499,7 @@ def helm_equip(request, character_id, item_id):
   return redirect('character', character_id=character_id)
 @login_required
 def chests(request, character_id):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueArmour')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueArmour')
   armours_list = response.json()
   armour_list = armours_list['lines']
   chest_list = [armour for armour in armour_list if armour['itemType']=="Body Armour"]
@@ -530,7 +541,7 @@ def chest_equip(request, character_id, item_id):
   return redirect('character', character_id=character_id)
 @login_required
 def gloves(request, character_id):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueArmour')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueArmour')
   armours_list = response.json()
   armour_list = armours_list['lines']
   glove_list = [armour for armour in armour_list if armour['itemType']=="Gloves"]
@@ -576,7 +587,7 @@ def glove_equip(request, character_id, item_id):
 
 @login_required
 def left_weapons(request, character_id):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueArmour')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueArmour')
   armours_list = response.json()
   armour_list = armours_list['lines']
   left_weapon_list = [armour for armour in armour_list if armour['itemType']=="Quiver" or armour['itemType']=="Shield"]
@@ -620,7 +631,7 @@ def left_weapon_equip(request, character_id, item_id):
   return redirect('character', character_id=character_id)
 @login_required
 def belts(request, character_id):
-  response = requests.get('https://poe.ninja/api/data/itemoverview?league=Settlers&type=UniqueAccessory')
+  response = requests.get(f'https://poe.ninja/api/data/itemoverview?league={currentSeason}&type=UniqueAccessory')
   accessories_list = response.json()
   accessory_list = accessories_list['lines']
   # print(f"this is the accessory list! {amulet_list}")
